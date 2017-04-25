@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Demo.cs" />
+     <None Include="Assets\Plugins\Android\MobLink\proguard-project.txt" />
+     <None Include="Assets\Plugins\Android\MobLink\AndroidManifest.xml" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

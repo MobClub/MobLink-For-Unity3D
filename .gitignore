@@ -9,6 +9,7 @@ obj
 /Library/AssetServerCacheV3
 /Library/assetDatabase3
 /Library/FailedAssetImports.txt
-Library/LastBuild.buildreport
+/Library/LastBuild.buildreport
+/Library/CrashedAssetImports.txt
 *.meta
 *.dll.mdb

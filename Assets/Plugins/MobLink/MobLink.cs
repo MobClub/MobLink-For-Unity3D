@@ -8,7 +8,7 @@ namespace com.moblink.unity3d
 {
 	public class MobLink : MonoBehaviour {
 
-		public string AppKey = "1bf42e96da8f0";
+		public string AppKey = "1b8898cb51ccb";
 
 		private static bool isInit;
 

@@ -52,6 +52,8 @@
      <Compile Include="Assets\Plugins\MobLink\MobLinkImpl.cs" />
      <Compile Include="Assets\Plugins\MobLink\MobLinkScene.cs" />
      <Compile Include="Assets\Plugins\MobLink\iOS\iOSMobLinkImpl.cs" />
+     <None Include="Assets\Plugins\Android\MobLink\proguard-project.txt" />
+     <None Include="Assets\Plugins\Android\MobLink\AndroidManifest.xml" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
