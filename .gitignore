@@ -8,5 +8,7 @@ obj
 /Library/AssetVersioning.db
 /Library/AssetServerCacheV3
 /Library/assetDatabase3
+/Library/FailedAssetImports.txt
+Library/LastBuild.buildreport
 *.meta
 *.dll.mdb
