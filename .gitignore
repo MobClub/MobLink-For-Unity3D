@@ -7,5 +7,6 @@ obj
 /Library/ShaderCache.db
 /Library/AssetVersioning.db
 /Library/AssetServerCacheV3
+/Library/assetDatabase3
 *.meta
 *.dll.mdb

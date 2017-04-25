@@ -1,11 +1,11 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{E0F36A81-5026-33A6-8FC9-386C663E3666}") = "Unity-For-MobLink", "Assembly-CSharp-firstpass.csproj", "{0783483A-B90E-07EB-9F41-B4F63D91AB45}"
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity-For-MobLink", "Assembly-CSharp-firstpass.csproj", "{0783483A-B90E-07EB-9F41-B4F63D91AB45}"
 EndProject
-Project("{E0F36A81-5026-33A6-8FC9-386C663E3666}") = "Unity-For-MobLink", "Assembly-CSharp.csproj", "{986B3224-18B2-7337-9F9B-9A7FA5C95A70}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity-For-MobLink", "Assembly-CSharp.csproj", "{986B3224-18B2-7337-9F9B-9A7FA5C95A70}"
 EndProject
-Project("{E0F36A81-5026-33A6-8FC9-386C663E3666}") = "Unity-For-MobLink", "Assembly-CSharp-Editor.csproj", "{F796C36F-BD61-9A8D-4B44-DC8FB2E0238A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity-For-MobLink", "Assembly-CSharp-Editor.csproj", "{F796C36F-BD61-9A8D-4B44-DC8FB2E0238A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
