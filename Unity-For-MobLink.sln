@@ -1,0 +1,35 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{E0F36A81-5026-33A6-8FC9-386C663E3666}") = "Unity-For-MobLink", "Assembly-CSharp-firstpass.csproj", "{0783483A-B90E-07EB-9F41-B4F63D91AB45}"
+EndProject
+Project("{E0F36A81-5026-33A6-8FC9-386C663E3666}") = "Unity-For-MobLink", "Assembly-CSharp.csproj", "{986B3224-18B2-7337-9F9B-9A7FA5C95A70}"
+EndProject
+Project("{E0F36A81-5026-33A6-8FC9-386C663E3666}") = "Unity-For-MobLink", "Assembly-CSharp-Editor.csproj", "{F796C36F-BD61-9A8D-4B44-DC8FB2E0238A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0783483A-B90E-07EB-9F41-B4F63D91AB45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0783483A-B90E-07EB-9F41-B4F63D91AB45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0783483A-B90E-07EB-9F41-B4F63D91AB45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0783483A-B90E-07EB-9F41-B4F63D91AB45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{986B3224-18B2-7337-9F9B-9A7FA5C95A70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{986B3224-18B2-7337-9F9B-9A7FA5C95A70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{986B3224-18B2-7337-9F9B-9A7FA5C95A70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{986B3224-18B2-7337-9F9B-9A7FA5C95A70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F796C36F-BD61-9A8D-4B44-DC8FB2E0238A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F796C36F-BD61-9A8D-4B44-DC8FB2E0238A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F796C36F-BD61-9A8D-4B44-DC8FB2E0238A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F796C36F-BD61-9A8D-4B44-DC8FB2E0238A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal

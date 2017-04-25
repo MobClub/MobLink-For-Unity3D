@@ -1,0 +1,11 @@
+Temp
+obj
+.DS_Store
+*.log
+/Library/metadata
+/Library/ShaderCache
+/Library/ShaderCache.db
+/Library/AssetVersioning.db
+/Library/AssetServerCacheV3
+*.meta
+*.dll.mdb
