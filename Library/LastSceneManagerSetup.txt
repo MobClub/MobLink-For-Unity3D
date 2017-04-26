@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Demo.unity
+- path: D:/workspace/New-Unity-For-ShareSDK/Unity3D-ShareSDK/Assets/test.unity
   isLoaded: 1
   isActive: 1

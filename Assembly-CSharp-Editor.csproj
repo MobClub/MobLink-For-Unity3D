@@ -48,7 +48,6 @@
   <ItemGroup>
      <Compile Include="Assets\Editor\MobLinkAutoPackage\MobLinkPostProcessBuild.cs" />
      <Compile Include="Assets\Editor\MobLinkAutoPackage\XCPlist.cs" />
-     <None Include="Assets\Plugins\Android\MobLink\proguard-project.txt" />
      <None Include="Assets\Plugins\Android\MobLink\AndroidManifest.xml" />
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
