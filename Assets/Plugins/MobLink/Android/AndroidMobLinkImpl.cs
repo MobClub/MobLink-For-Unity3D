@@ -32,20 +32,17 @@ namespace com.moblink.unity3d
 			object path = getJavaString(scene.path);
 			object source = getJavaString (scene.source);
 			object map = hashtable2JavaMap(scene.customParams);
-			object l = new AndroidJavaObject ("com.mob.moblink.unity.MobIdActionListener");
+			object l = new AndroidJavaObject ("com.mob.moblink.unity.ActionListener", "MOBLink", "_MobIdCallback");
 
 			// call java sdk 
 			initAndroidMoblink ();
 			javaMoblink.CallStatic ("getMobID", map, path, source, l);
-
 		}
 
 		private void initAndroidMoblink() 
 		{
 			if (null == javaMoblink) {
 				javaMoblink = new AndroidJavaClass ("com.mob.moblink.MobLink");
-			} else {
-
 			}
 		}
 

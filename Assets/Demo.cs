@@ -35,8 +35,9 @@ public class Demo : MonoBehaviour {
 
 		float scale = 1.0f;
 
-		if (Application.platform == RuntimePlatform.IPhonePlayer)
-		{
+		if (Application.platform == RuntimePlatform.IPhonePlayer) {
+			scale = Screen.width / 320;
+		} else if (Application.platform == RuntimePlatform.Android) {
 			scale = Screen.width / 320;
 		}
 

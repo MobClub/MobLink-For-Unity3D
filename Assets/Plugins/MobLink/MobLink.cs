@@ -55,6 +55,7 @@ namespace com.moblink.unity3d
 			
 		private void _RestoreCallBack (string data)
 		{
+			Console.Write ("_RestoreCallBack:" + data);
 			Hashtable res = (Hashtable) MiniJSON.jsonDecode(data);
 			if (res == null || res.Count <= 0) 
 			{
