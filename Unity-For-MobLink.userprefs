@@ -1,12 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Plugins\MobLink\MobLink.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Demo.cs">
     <Files>
-      <File FileName="Assets\Plugins\MobLink\MobLink.cs" Line="1" Column="1" />
+      <File FileName="Assets\Plugins\MobLink\MobLink.cs" Line="51" Column="1" />
       <File FileName="Assets\Editor\MobLinkAutoPackage\MobLinkPostProcessBuild.cs" Line="1" Column="1" />
-      <File FileName="Assets\Demo.cs" Line="1" Column="1" />
-      <File FileName="Assets\Plugins\MobLink\MobLinkImpl.cs" Line="1" Column="1" />
-      <File FileName="Assets\Plugins\MobLink\Android\AndroidMobLinkImpl.cs" Line="1" Column="1" />
+      <File FileName="Assets\Demo.cs" Line="184" Column="7" />
+      <File FileName="Assets\Plugins\MobLink\MobLinkImpl.cs" Line="10" Column="3" />
+      <File FileName="Assets\Plugins\MobLink\Android\AndroidMobLinkImpl.cs" Line="45" Column="1" />
+      <File FileName="Assets\Plugins\MobLink\GUIScale.cs" Line="48" Column="27" />
+      <File FileName="Assets\Plugins\MobLink\MiniJSON.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
