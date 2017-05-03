@@ -1,0 +1,15 @@
+{
+    "group":       "",
+    "libs":        [],
+    "frameworks":  [],
+    "zips":         [],                
+    "headerpaths": [],
+    "librarypaths": [],
+    "files":       [],
+    "folders":     [],
+    "buildSettings": { 
+        "OTHER_LDFLAGS" : ["-lz",
+                           "licucore"]
+    },
+    "excludes":    ["^.*.meta$", "^.*.mdown^", "^.*.pdf$"]
+}
