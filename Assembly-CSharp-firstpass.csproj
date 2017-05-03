@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Plugins\MobLink\Android\AndroidMobLinkImpl.cs" />
-     <Compile Include="Assets\Plugins\MobLink\GUIScale.cs" />
      <Compile Include="Assets\Plugins\MobLink\MiniJSON.cs" />
      <Compile Include="Assets\Plugins\MobLink\MobLink.cs" />
      <Compile Include="Assets\Plugins\MobLink\MobLinkImpl.cs" />

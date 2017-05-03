@@ -24,11 +24,13 @@ public class Demo : MonoBehaviour {
 	private String key1 = "", value1 = "";
 	private String key2 = "", value2 = "";
 	private String key3 = "", value3 = "";
-
 	private String mobId;
 
 	// 0, 不展示; 1,获取modId; 2, 分享提示; 3, 场景还原时用
 	private int boxId;
+
+	// window rect(dialog)
+	private Rect windowRect = Rect.zero;
 
 	void Start () {
 
@@ -101,7 +103,7 @@ public class Demo : MonoBehaviour {
 		value3 = GUI.TextField (new Rect (lineOffset, y, VALUE_WIDTH, h), value3);
 
 		y += V_DIVIDER_HEIGHT + ITEM_HEIGHT;
-		hit = GUI.Button (new Rect (x, y, w, ITEM_HEIGHT), "获取MobId");
+		hit = GUI.Button (new Rect (x, y, w, ITEM_HEIGHT), "获取MobId", "button");
 		if (hit)
 			clickGetMobId ();
 
@@ -115,7 +117,7 @@ public class Demo : MonoBehaviour {
 		if (hit)
 			fillDefault ();
 
-		guiBox ();
+		renderWindow ();
 	}
 		
 
@@ -168,29 +170,34 @@ public class Demo : MonoBehaviour {
 		key3 = "key3"; value3 = "value3";
 	}
 
-	void guiBox() 
+	void renderWindow() 
 	{
-		float width = Screen.width / 2;
-		float height = Screen.height / 2;
-		float x = width / 2;
-		float y = height / 2;
+		if (Rect.zero == windowRect) {
+			float width = Screen.width / 2;
+			float height = Screen.height / 2;
+			float x = width / 2;
+			float y = height / 2;
+			windowRect = new Rect (x, y, width, width);
+		}
 
-		/*
-		if (1 == boxId) {
-			GUI.Box (new Rect (x, y, width, height), "请先获取mobId");
-		} else if(2 == boxId) {
-			String url = "http://f.moblink.mob.com" + PATH [path] + "?mobid=" + mobId;
-			GUI.Box (new Rect (x, y, width, height), "请分享下面的链接地址: \r\n" + url + "\r\n然后就可以通过这个链接打开app, 并进行还原");
-		} */
-		windowRect = GUI.Window(0, windowRect, DoMyWindow, "My Window");
+		if (0 != boxId) {
+			GUI.ModalWindow(0, windowRect, renderWindowCallback, "提示");
+		}
 	}
 
-
-	public Rect windowRect = new Rect(20, 20, 120, 50);
-	void DoMyWindow(int windowID) {
-		if (GUI.Button(new Rect(10, 20, 100, 20), "Hello World"))
-			print("Got a click");
-
+	void renderWindowCallback(int windowID) {
+		String message = "";
+		if (1 == boxId) {
+			message = "请先获取mobId";
+		} else if (2 == boxId) {
+			String url = "http://f.moblink.mob.com" + PATH [path] + "?mobid=" + mobId;
+			message = "请分享下面的链接地址: \r\n" + url + "\r\n然后就可以通过这个链接打开app, 并进行还原";
+		}
+		Rect winRect = windowRect;
+		GUI.Label(new Rect(10 * scale, 50 * scale, winRect.width, winRect.height), message);
+		if (GUI.Button (new Rect (10 * scale, winRect.height - 50 * scale, winRect.width - 20 * scale, 30), "关闭")) {
+			boxId = 0;
+		}
 	}
 		
 }
