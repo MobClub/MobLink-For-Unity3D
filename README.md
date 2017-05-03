@@ -8,7 +8,7 @@
 ## 拖入MobLink并配置MobLink AppKey
 
 导入unitypackage后,在Plugins - MobLink 中找到MobLink.prefab。将其拖载到您的项目中,如图示
-![](media/14933624502736/14937771831429.jpg)
+![](READMEImg/14933624502736/14937771831429.jpg)
 
 ## 调用接口及获取回调
 
@@ -57,11 +57,11 @@ MobLink.onRestoreScene += sceneHandler;
 找到MobLinkAutoPackage - Editor - SDKPorter - MobLinkPostProcessBuild.cs
 在EditInfoPlist方法中，修改CFBundleURLSchemes 下的值,将其设置为您在MobLink后台填入的 URI Scheme (注意不带'://')
 
-![](media/14933624502736/14937845549367.jpg)
+![](READMEImg/14933624502736/14937845549367.jpg)
 
 
 配置Universal Link:
 在生成Xcode项目后,配置在MobLink后台所填入的Universal Link
 
-![](media/14933624502736/14937849253534.png)
+![](READMEImg/14933624502736/14937849253534.png)
 
