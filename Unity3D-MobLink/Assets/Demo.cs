@@ -143,6 +143,7 @@ public class Demo : MonoBehaviour {
 
 	void clickGetMobId()
 	{
+		/*
 		Hashtable custom = new Hashtable ();
 
 		String pathString = PATH [path];
@@ -158,15 +159,20 @@ public class Demo : MonoBehaviour {
 		}
 		MobLinkScene scene = new MobLinkScene (pathString, source, custom);
 		MobLink.getMobId (scene);
+		*/
+		Application.LoadLevel ("SceneA");
+
 	}
 
 	void clickShare()
 	{
+		/*
 		if (null == mobId || mobId.Length <= 0) {
 			boxId = 1;
 		} else {
 			boxId = 2;
-		}
+		} */
+		Application.LoadLevel ("SceneB");
 	}
 
 	void fillDefault()
