@@ -8,42 +8,37 @@ namespace com.moblink.unity3d
 	#if UNITY_ANDROID
 	public class AndroidMobLinkImpl : MobLinkImpl {
 
-		private AndroidJavaClass javaMoblink;
-		// Use this for initialization
-		void Start () {
-
-		}
-
-		// Update is called once per frame
-		void Update () {
-
-		}
-
 		public override void InitSDK (String appKey) 
 		{
-			initAndroidMoblink();
+			AndroidJavaClass javaMoblink = getAndroidMoblink();;
 			AndroidJavaObject context = getAndroidContext ();
-			object appkeyJava = getJavaString (appKey);
-			javaMoblink.CallStatic ("initSDK", context, appkeyJava);
+			javaMoblink.CallStatic ("initSDK", context, appKey);
 		}
 
-		public override void GetMobId (MobLinkScene scene)
-		{
-			object path = getJavaString(scene.path);
-			object source = getJavaString (scene.source);
-			object map = hashtable2JavaMap(scene.customParams);
-			object l = new AndroidJavaObject ("com.mob.moblink.unity.ActionListener", "MOBLink", "_MobIdCallback");
+		public override void GetMobId (string path, string source, Hashtable param, string goName, string method) {
+			object map = hashtable2JavaMap(param);
+			object l = new AndroidJavaObject ("com.mob.moblink.unity.GetMobIdListener", goName, method);
 
 			// call java sdk 
-			initAndroidMoblink ();
+			AndroidJavaClass javaMoblink = getAndroidMoblink ();
 			javaMoblink.CallStatic ("getMobID", map, path, source, l);
 		}
 
-		private void initAndroidMoblink() 
+		public void setIntentHandler(string goName, string method) {
+			object l = new AndroidJavaObject ("com.mob.moblink.unity.ActionListener", goName, method);
+			AndroidJavaObject activity = getAndroidContext ();
+			object intent = activity.Call<AndroidJavaObject> ("getIntent");
+			activity.CallStatic ("setIntentHandler", intent, l);
+		}
+
+		public void clearIntent() {
+			AndroidJavaObject activity = getAndroidContext ();
+			activity.Call ("setIntent", null);
+		}
+
+		private static AndroidJavaClass getAndroidMoblink() 
 		{
-			if (null == javaMoblink) {
-				javaMoblink = new AndroidJavaClass ("com.mob.moblink.MobLink");
-			}
+			return new AndroidJavaClass ("com.mob.moblink.MobLink");
 		}
 
 		private static AndroidJavaObject getAndroidContext() 
@@ -77,13 +72,6 @@ namespace com.moblink.unity3d
 			}
 			return javaMap;
 		}
-
-		/*
-		private static void _callJava_GetMobId(AndroidJavaObject) {
-			AndroidJavaObject a;
-
-			Lcom/mob/moblink/MobLink;.getMobID(Ljava.util.HashMap;Ljava.lang.String;Ljava.lang.String;Lcom.mob.moblink.unity.MobIdActionListener;)V
-			*/
 	}
 	#endif
 }

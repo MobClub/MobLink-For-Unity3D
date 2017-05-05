@@ -8,12 +8,15 @@ namespace com.moblink.unity3d
 {
 	public class MobLink : MonoBehaviour {
 
-		public string AppKey = "1bf42e96da8f0";
+		public string AppKey = "1b8898cb51ccb";
+		public const string MOB_GAMEOBJECT_NAME = "MobLink";
+		public const string MOB_GETMOBID_CALLBACK_METHOD = "_MobIdCallback";
+		public const string MOB_RESTORE_CALLBACK_METHOD = "_RestoreCallBack";
 
 		private static bool isInit;
 
 		public delegate void GetMobIdHandler(string mobId);
-		public delegate void RestoreSceneHandler(MobLinkScene scene);
+		public delegate void RestoreSceneHandler(Hashtable scene);
 
 		public static event GetMobIdHandler onGetMobId;
 		public static event RestoreSceneHandler onRestoreScene;
@@ -48,6 +51,14 @@ namespace com.moblink.unity3d
 			moblinkUtils.GetMobId(scene);
 		}
 
+		public static void setIntentHandler(object l) {
+			moblinkUtils.setIntentHandler (MOB_GAMEOBJECT_NAME, "_RestoreCallBack");
+		}
+
+		public static void clearIntent() {
+			moblinkUtils.clearIntent ();
+		}
+
 		private void _MobIdCallback (string mobid)
 		{
 			onGetMobId (mobid);
@@ -60,12 +71,7 @@ namespace com.moblink.unity3d
 			{
 				return;
 			}
-				
-			string path = res ["path"].ToString();
-			string source = res ["source"].ToString();
-			Hashtable customParams = (Hashtable)res ["params"];
-			MobLinkScene scene = new MobLinkScene (path, source, customParams);
-			onRestoreScene (scene);
+			onRestoreScene (res);
 		}
 	}
 

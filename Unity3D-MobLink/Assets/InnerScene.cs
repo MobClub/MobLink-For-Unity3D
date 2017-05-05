@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class InnerScene : MonoBehaviour {
+public class InnerScene : BaseScene {
 
 	private float scale = 1.0f;
 

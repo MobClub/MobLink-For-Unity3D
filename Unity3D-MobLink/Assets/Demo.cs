@@ -5,7 +5,7 @@ using com.moblink.unity3d;
 
 using System.Runtime.InteropServices;
 
-public class Demo : MonoBehaviour {
+public class Demo : BaseScene {
 
 	public GUISkin demoSkin;
 	public MobLink moblink;
@@ -33,19 +33,6 @@ public class Demo : MonoBehaviour {
 	private Rect windowRect = Rect.zero;
 
 	void Start () {
-
-		//获取回调的方式一：
-		//注意,如果block中有引用其他,会将其持有
-//		MobLink.onGetMobId += (mobId) => {
-//
-//
-//		};
-
-//		MobLink.onRestoreScene += (Hashtable scene) => {
-//			
-//		};
-
-
 		//获取回调的方式二(推荐)【更建议此种方式,然后在本类中销毁,参看本类Destroy()】：
 		MobLink.onGetMobId += mobIdHandler;
 		MobLink.onRestoreScene += sceneHandler;
@@ -130,20 +117,18 @@ public class Demo : MonoBehaviour {
 	//获取mobid之回调
 	void mobIdHandler (string mobid)
 	{
+		mobId = mobid;
 		Console.Write ("Received MobId:" + mobid);
 	}
 		
 	//场景恢复之回调
-	void sceneHandler (MobLinkScene scene)
+	void sceneHandler (Hashtable param)
 	{
-		Console.Write ("path:" + scene.path);
-		Console.Write ("source:" + scene.source);
-		Console.Write ("params:" + MiniJSON.jsonEncode (scene.customParams));
+		Debug.Log ("sceneHandler(), param:" + param);
 	}
 
 	void clickGetMobId()
 	{
-		/*
 		Hashtable custom = new Hashtable ();
 
 		String pathString = PATH [path];
@@ -159,20 +144,15 @@ public class Demo : MonoBehaviour {
 		}
 		MobLinkScene scene = new MobLinkScene (pathString, source, custom);
 		MobLink.getMobId (scene);
-		*/
-		Application.LoadLevel ("SceneA");
-
 	}
 
 	void clickShare()
 	{
-		/*
 		if (null == mobId || mobId.Length <= 0) {
 			boxId = 1;
 		} else {
 			boxId = 2;
-		} */
-		Application.LoadLevel ("SceneB");
+		}
 	}
 
 	void fillDefault()

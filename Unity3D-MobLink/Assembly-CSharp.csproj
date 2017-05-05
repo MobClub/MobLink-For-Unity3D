@@ -46,6 +46,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\BaseScene.cs" />
      <Compile Include="Assets\Demo.cs" />
      <Compile Include="Assets\InnerScene.cs" />
      <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
