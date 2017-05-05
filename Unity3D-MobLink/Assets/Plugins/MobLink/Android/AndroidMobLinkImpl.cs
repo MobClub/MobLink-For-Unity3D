@@ -24,16 +24,25 @@ namespace com.moblink.unity3d
 			javaMoblink.CallStatic ("getMobID", map, path, source, l);
 		}
 
-		public void setIntentHandler(string goName, string method) {
-			object l = new AndroidJavaObject ("com.mob.moblink.unity.ActionListener", goName, method);
+		public override void setIntentHandler(string goName, string method) {
 			AndroidJavaObject activity = getAndroidContext ();
 			object intent = activity.Call<AndroidJavaObject> ("getIntent");
-			activity.CallStatic ("setIntentHandler", intent, l);
+			object l = new AndroidJavaObject ("com.mob.moblink.unity.ActionListener", goName, method);
+			AndroidJavaClass javaMoblink = getAndroidMoblink ();
+			javaMoblink.CallStatic ("setIntentHandler", intent, l);
 		}
 
 		public void clearIntent() {
 			AndroidJavaObject activity = getAndroidContext ();
 			activity.Call ("setIntent", null);
+		}
+
+		public override string getIntentPath() {
+			AndroidJavaObject activity = getAndroidContext ();
+			AndroidJavaObject intent = activity.Call<AndroidJavaObject> ("getIntent");
+
+			AndroidJavaClass clazz = new AndroidJavaClass ("com.mob.moblink.unity.ActionListener");
+			return clazz.CallStatic<string> ("getIntentPath", intent);
 		}
 
 		private static AndroidJavaClass getAndroidMoblink() 

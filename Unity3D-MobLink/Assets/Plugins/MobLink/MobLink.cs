@@ -52,11 +52,15 @@ namespace com.moblink.unity3d
 		}
 
 		public static void setIntentHandler(object l) {
-			moblinkUtils.setIntentHandler (MOB_GAMEOBJECT_NAME, "_RestoreCallBack");
+			moblinkUtils.setIntentHandler (MOB_GAMEOBJECT_NAME, MOB_RESTORE_CALLBACK_METHOD);
 		}
 
 		public static void clearIntent() {
 			moblinkUtils.clearIntent ();
+		}
+
+		public static string getIntentPath() {
+			return moblinkUtils.getIntentPath ();
 		}
 
 		private void _MobIdCallback (string mobid)
@@ -66,6 +70,7 @@ namespace com.moblink.unity3d
 			
 		private void _RestoreCallBack (string data)
 		{
+			Debug.Log ("data" + data);
 			Hashtable res = (Hashtable) MiniJSON.jsonDecode(data);
 			if (res == null || res.Count <= 0) 
 			{

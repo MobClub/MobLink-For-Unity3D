@@ -33,6 +33,8 @@
 				<category android:name="android.intent.category.DEFAULT"/>
 				<data android:scheme="mlink" android:host="com.mob.moblink.demo" android:path="/demo/a"/>
 				<data android:scheme="mlink" android:host="com.mob.moblink.demo" android:path="/demo/b"/>
+				<data android:scheme="mlink" android:host="com.mob.moblink.demo" android:path="/demo/c"/>
+				<data android:scheme="mlink" android:host="com.mob.moblink.demo" android:path="/demo/d"/>
             </intent-filter>
         </activity>
     </application>

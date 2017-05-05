@@ -5,27 +5,41 @@ using com.moblink.unity3d;
 
 public class BaseScene : MonoBehaviour 
 {
-
-	void Start () {
+	private string path;
+	protected virtual void Start () {
 		MobLink.onRestoreScene += OnRestoreScene;
 	}
 
-
-	void OnApplicationFocus(bool hasFocus)
-	{
-		Debug.Log ("OnApplicationFocus(), hasFocus:" + hasFocus);
-	}
-
-	void OnApplicationPause(bool pauseStatus)
+	protected virtual void OnApplicationPause(bool pauseStatus)
 	{
 		if (!pauseStatus) {
 			MobLink.setIntentHandler (null);
+			path = MobLink.getIntentPath ();
 			MobLink.clearIntent ();
 		}
 	}
 
-	void OnRestoreScene(Hashtable param)
+	protected virtual void OnRestoreScene(Hashtable res)
 	{
-		Debug.Log ("OnRestoreScene");
+		string source = res ["source"].ToString();
+		if ("/demo/a" == path) {
+			Application.LoadLevel ("SceneA");
+		} else if ("/demo/b" == path) {
+			Application.LoadLevel ("SceneB");
+		} else if ("/demo/c" == path) {
+			Application.LoadLevel ("SceneC");
+		} else if ("/demo/d" == path) {
+			Application.LoadLevel ("SceneD");
+		} else {
+			// do nothing
+		}
+
+		Hashtable customParams = (Hashtable)res ["params"];
+
+		Debug.Log ("OnRestoreScene(), param:" + customParams);
+	}
+
+	protected virtual void OnDestroy() {
+		MobLink.onRestoreScene -= OnRestoreScene;
 	}
 }

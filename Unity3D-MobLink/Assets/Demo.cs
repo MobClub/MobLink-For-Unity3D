@@ -32,15 +32,14 @@ public class Demo : BaseScene {
 	// window rect(dialog)
 	private Rect windowRect = Rect.zero;
 
-	void Start () {
-		//获取回调的方式二(推荐)【更建议此种方式,然后在本类中销毁,参看本类Destroy()】：
+	protected override void Start () {
+		base.Start ();
 		MobLink.onGetMobId += mobIdHandler;
-		MobLink.onRestoreScene += sceneHandler;
 	}
 
-	//对应”方式二“的销毁
-	void Destroy()
+	protected override void OnDestroy()
 	{
+		base.OnDestroy ();
 		MobLink.onGetMobId -= mobIdHandler;
 	}
 
@@ -121,12 +120,6 @@ public class Demo : BaseScene {
 		Console.Write ("Received MobId:" + mobid);
 	}
 		
-	//场景恢复之回调
-	void sceneHandler (Hashtable param)
-	{
-		Debug.Log ("sceneHandler(), param:" + param);
-	}
-
 	void clickGetMobId()
 	{
 		Hashtable custom = new Hashtable ();

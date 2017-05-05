@@ -26,6 +26,10 @@ namespace com.moblink.unity3d
 		public virtual void clearIntent() {
 			
 		}
+
+		public virtual string getIntentPath() {
+			return null;
+		}
 	}
 
 }
