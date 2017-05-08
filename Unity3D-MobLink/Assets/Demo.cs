@@ -12,7 +12,7 @@ public class Demo : BaseScene {
 
 	private float scale = 1.0f;
 
-	private static String[] PATH = new string[]{"/demo/a",
+	private static String[] PATH = new string[]{
 		"/demo/a",
 		"/demo/b",
 		"/demo/c",
