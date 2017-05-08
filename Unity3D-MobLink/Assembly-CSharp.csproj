@@ -49,8 +49,8 @@
      <Compile Include="Assets\BaseScene.cs" />
      <Compile Include="Assets\Demo.cs" />
      <Compile Include="Assets\InnerScene.cs" />
-     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\Plugins\Android\MobLink\AndroidManifest.xml" />
+     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

@@ -62,8 +62,10 @@ public class Demo : BaseScene {
 
 		GUI.skin.button.fontSize = (int)FONT_SIZE;
 		GUI.skin.label.fontSize = (int)FONT_SIZE;
+		GUI.skin.label.alignment = TextAnchor.MiddleLeft;
 		GUI.skin.textField.fontSize = (int)FONT_SIZE;
 		GUI.skin.box.fontSize = (int)FONT_SIZE;
+		GUI.skin.window.fontSize = (int)FONT_SIZE;
 
 		float x, y, w, h;
 		w = Screen.width - 40 * scale; x = 20 * scale; y = 40 * scale; h = ITEM_HEIGHT;
@@ -160,10 +162,10 @@ public class Demo : BaseScene {
 	void renderWindow() 
 	{
 		if (Rect.zero == windowRect) {
-			float width = Screen.width / 2;
-			float height = Screen.height / 2;
-			float x = width / 2;
-			float y = height / 2;
+			float width = Screen.width - 80 * scale;
+			float height = width;
+			float x = 40 * scale;
+			float y = (Screen.height - height) / 2;
 			windowRect = new Rect (x, y, width, width);
 		}
 
@@ -181,8 +183,9 @@ public class Demo : BaseScene {
 			message = "请分享下面的链接地址: \r\n" + url + "\r\n然后就可以通过这个链接打开app, 并进行还原";
 		}
 		Rect winRect = windowRect;
-		GUI.Label(new Rect(10 * scale, 50 * scale, winRect.width, winRect.height), message);
-		if (GUI.Button (new Rect (10 * scale, winRect.height - 50 * scale, winRect.width - 20 * scale, 30), "关闭")) {
+		GUI.skin.label.alignment = TextAnchor.UpperLeft;
+		GUI.Label(new Rect(10 * scale, 50 * scale, winRect.width - 20 * scale, winRect.height), message);
+		if (GUI.Button (new Rect (10 * scale, winRect.height - 50 * scale, winRect.width - 20 * scale, 30 * scale), "关闭")) {
 			boxId = 0;
 		}
 	}

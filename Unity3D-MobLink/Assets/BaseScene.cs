@@ -5,6 +5,9 @@ using com.moblink.unity3d;
 
 public class BaseScene : MonoBehaviour 
 {
+	// 临时用来在Scene切换时传递参数
+	public static Hashtable tempParam;
+
 	private string path;
 	protected virtual void Start () {
 		MobLink.onRestoreScene += OnRestoreScene;
@@ -22,6 +25,7 @@ public class BaseScene : MonoBehaviour
 	protected virtual void OnRestoreScene(Hashtable res)
 	{
 		string source = res ["source"].ToString();
+		tempParam = res;
 		if ("/demo/a" == path) {
 			Application.LoadLevel ("SceneA");
 		} else if ("/demo/b" == path) {
