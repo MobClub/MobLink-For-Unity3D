@@ -12,24 +12,26 @@ namespace com.moblink.unity3d
 		}
 
 		public virtual void GetMobId (MobLinkScene scene) {
-			GetMobId (scene.path, scene.source, scene.customParams, MobLink.MOB_GAMEOBJECT_NAME, MobLink.MOB_GETMOBID_CALLBACK_METHOD);
+			GetMobId (scene.path, scene.source, scene.customParams);
 		}
 
-		public virtual void GetMobId (string path, string source, Hashtable param, string goName, string method) {
+		public virtual void GetMobId (string path, string source, Hashtable param) {
+			// subclass impl this method
+		}
+
+		#if UNITY_ANDROID
+		public virtual void setIntentHandler() {
 			
 		}
 
-		public virtual void setIntentHandler(string goName, string method) {
-			
-		}
-
-		public virtual void clearIntent() {
+		public virtual void setIntentNull() {
 			
 		}
 
 		public virtual string getIntentPath() {
 			return null;
 		}
+		#endif
 	}
 
 }

@@ -7,6 +7,9 @@ public class InnerScene : BaseScene {
 
 	private float scale = 1.0f;
 
+	/**
+	 * 用于标识当前Scene, SceneA/B/C/D 共用此脚本
+	 */
 	private string currentScene;
 	private string title;
 	private string label;
@@ -15,31 +18,34 @@ public class InnerScene : BaseScene {
 	// window rect(dialog)
 	private Rect windowRect;
 	private int boxId;
-	private string innerPath;
 
-	void Start() {
+	// 表示当前scene的path
+	private string currentScenePath;
+
+	protected override void Start() {
+		base.Start ();
 		currentScene = SceneManager.GetActiveScene().name;
 		param = BaseScene.tempParam;
 		if ("SceneA" == currentScene) {
 			title = "A界面";
 			label = "A";
-			innerPath = "/demo/a";
+			currentScenePath = "/demo/a";
 		} else if ("SceneB" == currentScene) {
 			title = "B界面";
 			label = "B";
-			innerPath = "/demo/b";
+			currentScenePath = "/demo/b";
 		} else if ("SceneC" == currentScene) {
 			title = "C界面";
 			label = "C";
-			innerPath = "/demo/c";
+			currentScenePath = "/demo/c";
 		} else if ("SceneD" == currentScene) {
 			title = "D界面";
 			label = "D";
-			innerPath = "/demo/d";
+			currentScenePath = "/demo/d";
 		} else {
 			title = "A界面";
 			label = "A";
-			innerPath = "/demo/a";
+			currentScenePath = "/demo/a";
 		}
 
 		boxId = 1;
@@ -58,10 +64,7 @@ public class InnerScene : BaseScene {
 		}
 
 		float FONT_SIZE = (int)(18 * scale);
-		float FILL_WIDTH = Screen.width;
 		float ITEM_HEIGHT = 30 * scale;
-		float V_DIVIDER_HEIGHT = 20 * scale;
-		float LEFT = 20 * scale;
 		bool hit = false;
 
 		GUI.skin.button.fontSize = (int)FONT_SIZE;
@@ -97,7 +100,7 @@ public class InnerScene : BaseScene {
 	}
 
 	void clickBack() {
-		Application.LoadLevel ("Demo");
+		SceneManager.LoadScene ("Demo");
 	}
 
 	void guiDialogWindow() {
@@ -115,7 +118,7 @@ public class InnerScene : BaseScene {
 
 	void renderWindowCallback(int windowID) {
 		string message = "路径innerPath\n";
-		message += innerPath + "\n";
+		message += currentScenePath + "\n";
 		message += "\n";
 
 		message += "来源source\n";

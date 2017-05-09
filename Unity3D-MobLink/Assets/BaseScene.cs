@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using com.moblink.unity3d;
 
 public class BaseScene : MonoBehaviour 
@@ -8,32 +9,34 @@ public class BaseScene : MonoBehaviour
 	// 临时用来在Scene切换时传递参数
 	public static Hashtable tempParam;
 
-	private string path;
+	// 需还原场景的path
+	private string restorePath;
 	protected virtual void Start () {
 		MobLink.onRestoreScene += OnRestoreScene;
 	}
 
+	#if UNITY_ANDROID
 	protected virtual void OnApplicationPause(bool pauseStatus)
 	{
+		// 您应该复制这段代码 -> 您的实现方法里.
 		if (!pauseStatus) {
-			MobLink.setIntentHandler (null);
-			path = MobLink.getIntentPath ();
-			MobLink.clearIntent ();
+			restorePath = MobLink.getIntentPath ();
+			MobLink.setIntentHandler ();
 		}
 	}
+	#endif
 
 	protected virtual void OnRestoreScene(Hashtable res)
 	{
-		string source = res ["source"].ToString();
 		tempParam = res;
-		if ("/demo/a" == path) {
-			Application.LoadLevel ("SceneA");
-		} else if ("/demo/b" == path) {
-			Application.LoadLevel ("SceneB");
-		} else if ("/demo/c" == path) {
-			Application.LoadLevel ("SceneC");
-		} else if ("/demo/d" == path) {
-			Application.LoadLevel ("SceneD");
+		if ("/demo/a" == restorePath) {
+			SceneManager.LoadScene ("SceneA");
+		} else if ("/demo/b" == restorePath) {
+			SceneManager.LoadScene ("SceneB");
+		} else if ("/demo/c" == restorePath) {
+			SceneManager.LoadScene ("SceneC");
+		} else if ("/demo/d" == restorePath) {
+			SceneManager.LoadScene ("SceneD");
 		} else {
 			// do nothing
 		}

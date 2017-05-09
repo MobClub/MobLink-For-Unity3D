@@ -9,9 +9,6 @@ namespace com.moblink.unity3d
 	public class MobLink : MonoBehaviour {
 
 		public string AppKey = "1b8898cb51ccb";
-		public const string MOB_GAMEOBJECT_NAME = "MobLink";
-		public const string MOB_GETMOBID_CALLBACK_METHOD = "_MobIdCallback";
-		public const string MOB_RESTORE_CALLBACK_METHOD = "_RestoreCallBack";
 
 		private static bool isInit;
 
@@ -51,17 +48,31 @@ namespace com.moblink.unity3d
 			moblinkUtils.GetMobId(scene);
 		}
 
-		public static void setIntentHandler(object l) {
-			moblinkUtils.setIntentHandler (MOB_GAMEOBJECT_NAME, MOB_RESTORE_CALLBACK_METHOD);
+		public static void getMobId(string path, string source, Hashtable param)
+		{
+			moblinkUtils.GetMobId (path, source, param);
 		}
 
-		public static void clearIntent() {
-			moblinkUtils.clearIntent ();
+		#if UNITY_ANDROID
+		/**
+		 * 解析intent中，跟服务器匹配的scheme数据
+		 * 解析成功后会回调_RestoreCallBack函数
+		 */
+		public static void setIntentHandler() 
+		{
+			moblinkUtils.setIntentHandler ();
+			moblinkUtils.setIntentNull ();
 		}
 
-		public static string getIntentPath() {
+		/**
+		 * 从当前Intent中取出path.
+		 * @return path.
+		 */
+		public static string getIntentPath() 
+		{
 			return moblinkUtils.getIntentPath ();
 		}
+		#endif
 
 		private void _MobIdCallback (string mobid)
 		{

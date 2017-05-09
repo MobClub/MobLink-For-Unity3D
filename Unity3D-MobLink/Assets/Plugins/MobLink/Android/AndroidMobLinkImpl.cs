@@ -8,6 +8,10 @@ namespace com.moblink.unity3d
 	#if UNITY_ANDROID
 	public class AndroidMobLinkImpl : MobLinkImpl {
 
+		public const string MOB_GAMEOBJECT_NAME = "MobLink";
+		public const string MOB_GETMOBID_CALLBACK_METHOD = "_MobIdCallback";
+		public const string MOB_RESTORE_CALLBACK_METHOD = "_RestoreCallBack";
+
 		public override void InitSDK (String appKey) 
 		{
 			AndroidJavaClass javaMoblink = getAndroidMoblink();;
@@ -15,24 +19,24 @@ namespace com.moblink.unity3d
 			javaMoblink.CallStatic ("initSDK", context, appKey);
 		}
 
-		public override void GetMobId (string path, string source, Hashtable param, string goName, string method) {
+		public override void GetMobId (string path, string source, Hashtable param) {
 			object map = hashtable2JavaMap(param);
-			object l = new AndroidJavaObject ("com.mob.moblink.unity.GetMobIdListener", goName, method);
+			object l = new AndroidJavaObject ("com.mob.moblink.unity.GetMobIdListener", MOB_GAMEOBJECT_NAME, MOB_GETMOBID_CALLBACK_METHOD);
 
 			// call java sdk 
 			AndroidJavaClass javaMoblink = getAndroidMoblink ();
 			javaMoblink.CallStatic ("getMobID", map, path, source, l);
 		}
 
-		public override void setIntentHandler(string goName, string method) {
+		public override void setIntentHandler() {
 			AndroidJavaObject activity = getAndroidContext ();
 			object intent = activity.Call<AndroidJavaObject> ("getIntent");
-			object l = new AndroidJavaObject ("com.mob.moblink.unity.ActionListener", goName, method);
+			object l = new AndroidJavaObject ("com.mob.moblink.unity.ActionListener", MOB_GAMEOBJECT_NAME, MOB_RESTORE_CALLBACK_METHOD);
 			AndroidJavaClass javaMoblink = getAndroidMoblink ();
 			javaMoblink.CallStatic ("setIntentHandler", intent, l);
 		}
 
-		public void clearIntent() {
+		public override void setIntentNull() {
 			AndroidJavaObject activity = getAndroidContext ();
 			activity.Call ("setIntent", null);
 		}
