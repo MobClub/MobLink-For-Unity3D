@@ -19,7 +19,7 @@ public class Demo : BaseScene {
 		"/demo/d"
 	};
 
-	private int path;
+	private int tempPath;
 	private String source = "";
 	private String key1 = "", value1 = "";
 	private String key2 = "", value2 = "";
@@ -30,7 +30,7 @@ public class Demo : BaseScene {
 	private int boxId;
 
 	// window rect(dialog)
-	private Rect windowRect = Rect.zero;
+	private Rect windowRect;
 
 	protected override void Start () {
 		base.Start ();
@@ -71,7 +71,7 @@ public class Demo : BaseScene {
 		w = Screen.width - 40 * scale; x = 20 * scale; y = 40 * scale; h = ITEM_HEIGHT;
 		GUI.Label(new Rect(x, y, w, ITEM_HEIGHT), "路径path");
 		y += V_DIVIDER_HEIGHT + FONT_SIZE;
-		path = GUI.Toolbar (new Rect (x, y, w, h), path, new string[]{ "A界面", "B界面", "C界面", "D界面" });
+		tempPath = GUI.Toolbar (new Rect (x, y, w, h), tempPath, new string[]{ "A界面", "B界面", "C界面", "D界面" });
 
 		y += V_DIVIDER_HEIGHT + ITEM_HEIGHT;
 		GUI.Label(new Rect(x, y, w, h), "来源source");
@@ -126,7 +126,7 @@ public class Demo : BaseScene {
 	{
 		Hashtable custom = new Hashtable ();
 
-		String pathString = PATH [path];
+		String pathString = PATH [tempPath];
 
 		if (key1.Length > 0 && value1.Length > 0) {
 			custom.Add (key1, value1);
@@ -152,7 +152,7 @@ public class Demo : BaseScene {
 
 	void fillDefault()
 	{
-		path = 0;
+		tempPath = 0;
 		source = "MobLinkDemo";
 		key1 = "key1"; value1 = "value1";
 		key2 = "key2"; value2 = "value2";
@@ -161,7 +161,7 @@ public class Demo : BaseScene {
 
 	void renderWindow() 
 	{
-		if (Rect.zero == windowRect) {
+		{
 			float width = Screen.width - 80 * scale;
 			float height = width;
 			float x = 40 * scale;
@@ -179,7 +179,7 @@ public class Demo : BaseScene {
 		if (1 == boxId) {
 			message = "请先获取mobId";
 		} else if (2 == boxId) {
-			String url = "http://f.moblink.mob.com" + PATH [path] + "?mobid=" + mobId;
+			String url = "http://f.moblink.mob.com" + PATH [tempPath] + "?mobid=" + mobId;
 			message = "请分享下面的链接地址: \r\n" + url + "\r\n然后就可以通过这个链接打开app, 并进行还原";
 		}
 		Rect winRect = windowRect;

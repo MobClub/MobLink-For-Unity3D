@@ -13,9 +13,9 @@ public class InnerScene : BaseScene {
 	private Hashtable param;
 
 	// window rect(dialog)
-	private Rect windowRect = Rect.zero;
+	private Rect windowRect;
 	private int boxId;
-	private string path;
+	private string innerPath;
 
 	void Start() {
 		currentScene = SceneManager.GetActiveScene().name;
@@ -23,23 +23,23 @@ public class InnerScene : BaseScene {
 		if ("SceneA" == currentScene) {
 			title = "A界面";
 			label = "A";
-			path = "/demo/a";
+			innerPath = "/demo/a";
 		} else if ("SceneB" == currentScene) {
 			title = "B界面";
 			label = "B";
-			path = "/demo/b";
+			innerPath = "/demo/b";
 		} else if ("SceneC" == currentScene) {
 			title = "C界面";
 			label = "C";
-			path = "/demo/c";
+			innerPath = "/demo/c";
 		} else if ("SceneD" == currentScene) {
 			title = "D界面";
 			label = "D";
-			path = "/demo/d";
+			innerPath = "/demo/d";
 		} else {
 			title = "A界面";
 			label = "A";
-			path = "/demo/a";
+			innerPath = "/demo/a";
 		}
 
 		boxId = 1;
@@ -101,7 +101,7 @@ public class InnerScene : BaseScene {
 	}
 
 	void guiDialogWindow() {
-		if (Rect.zero == windowRect) {
+		{
 			float width = Screen.width - 80 * scale;
 			float height = width;
 			float x = 40 * scale;
@@ -114,8 +114,8 @@ public class InnerScene : BaseScene {
 	}
 
 	void renderWindowCallback(int windowID) {
-		string message = "路径path\n";
-		message += path + "\n";
+		string message = "路径innerPath\n";
+		message += innerPath + "\n";
 		message += "\n";
 
 		message += "来源source\n";
