@@ -47,11 +47,6 @@ namespace com.moblink.unity3d
 			moblinkUtils.GetMobId(scene);
 		}
 
-		public static void getMobId(string path, string source, Hashtable param)
-		{
-			moblinkUtils.GetMobId (path, source, param);
-		}
-
 		#if UNITY_ANDROID
 		/**
 		 * 本方法仅支持安卓
@@ -64,15 +59,6 @@ namespace com.moblink.unity3d
 			moblinkUtils.setIntentNull ();
 		}
 
-		/**
-		 * 本方法仅支持安卓
-		 * 从当前Intent中取出path.
-		 * @return path.
-		 */
-		public static string getIntentPath() 
-		{
-			return moblinkUtils.getIntentPath ();
-		}
 		#endif
 
 		private void _MobIdCallback (string mobid)

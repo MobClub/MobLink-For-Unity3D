@@ -1,6 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.AttachToProcess" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Demo\BaseScene.cs">
+    <Files>
+      <File FileName="Assets\Demo\InnerScene.cs" Line="28" Column="30" />
+      <File FileName="Assets\Demo\BaseScene.cs" Line="5" Column="7" />
+      <File FileName="Assets\Plugins\MobLink\MobLink.cs" Line="48" Column="4" />
+      <File FileName="Assets\Plugins\MobLink\MobLinkImpl.cs" Line="15" Column="4" />
+      <File FileName="Assets\Plugins\MobLink\Android\AndroidMobLinkImpl.cs" Line="22" Column="19" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="D:\workspace\Unity-For-MobLink\Unity3D-MobLink\Assets\SceneA.cs" line="40" column="1" />

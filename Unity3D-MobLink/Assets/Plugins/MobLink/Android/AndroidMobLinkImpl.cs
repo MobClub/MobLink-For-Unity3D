@@ -19,7 +19,11 @@ namespace com.moblink.unity3d
 			javaMoblink.CallStatic ("initSDK", context, appKey);
 		}
 
-		public override void GetMobId (string path, string source, Hashtable param) {
+		public override void GetMobId (MobLinkScene scene) {
+			GetMobId (scene.path, scene.source, scene.customParams);
+		}
+
+		private void GetMobId (string path, string source, Hashtable param) {
 			object map = hashtable2JavaMap(param);
 			object l = new AndroidJavaObject ("com.mob.moblink.unity.GetMobIdListener", MOB_GAMEOBJECT_NAME, MOB_GETMOBID_CALLBACK_METHOD);
 
@@ -39,14 +43,6 @@ namespace com.moblink.unity3d
 		public override void setIntentNull() {
 			AndroidJavaObject activity = getAndroidContext ();
 			activity.Call ("setIntent", null);
-		}
-
-		public override string getIntentPath() {
-			AndroidJavaObject activity = getAndroidContext ();
-			AndroidJavaObject intent = activity.Call<AndroidJavaObject> ("getIntent");
-
-			AndroidJavaClass clazz = new AndroidJavaClass ("com.mob.moblink.unity.ActionListener");
-			return clazz.CallStatic<string> ("getIntentPath", intent);
 		}
 
 		private static AndroidJavaClass getAndroidMoblink() 

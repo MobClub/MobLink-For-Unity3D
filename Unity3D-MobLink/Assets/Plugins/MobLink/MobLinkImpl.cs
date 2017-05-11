@@ -12,11 +12,7 @@ namespace com.moblink.unity3d
 		}
 
 		public virtual void GetMobId (MobLinkScene scene) {
-			GetMobId (scene.path, scene.source, scene.customParams);
-		}
-
-		public virtual void GetMobId (string path, string source, Hashtable param) {
-			// subclass impl this method
+			
 		}
 
 		#if UNITY_ANDROID

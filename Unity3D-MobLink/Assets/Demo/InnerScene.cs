@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using com.moblink.unity3d;
 
 public class InnerScene : BaseScene {
 
@@ -13,39 +14,31 @@ public class InnerScene : BaseScene {
 	private string currentScene;
 	private string title;
 	private string label;
-	private Hashtable param;
+	private MobLinkScene restoreScene;
 
 	// window rect(dialog)
 	private Rect windowRect;
 	private int boxId;
 
-	// 表示当前scene的path
-	private string currentScenePath;
-
 	protected override void Start() {
 		base.Start ();
 		currentScene = SceneManager.GetActiveScene().name;
-		param = BaseScene.tempParam;
+		restoreScene = BaseScene.tempScene;
 		if ("SceneA" == currentScene) {
 			title = "A界面";
 			label = "A";
-			currentScenePath = "/demo/a";
 		} else if ("SceneB" == currentScene) {
 			title = "B界面";
 			label = "B";
-			currentScenePath = "/demo/b";
 		} else if ("SceneC" == currentScene) {
 			title = "C界面";
 			label = "C";
-			currentScenePath = "/demo/c";
 		} else if ("SceneD" == currentScene) {
 			title = "D界面";
 			label = "D";
-			currentScenePath = "/demo/d";
 		} else {
 			title = "A界面";
 			label = "A";
-			currentScenePath = "/demo/a";
 		}
 
 		boxId = 1;
@@ -111,22 +104,23 @@ public class InnerScene : BaseScene {
 			float y = (Screen.height - height) / 2;
 			windowRect = new Rect (x, y, width, width);
 		}
-		if (0 != boxId && null != param && param.Count > 0) {
+
+		if (0 != boxId && null != restoreScene && restoreScene.customParams.Count > 0) {
 			GUI.ModalWindow(0, windowRect, renderWindowCallback, "参数");
 		}
 	}
 
 	void renderWindowCallback(int windowID) {
-		string message = "路径innerPath\n";
-		message += currentScenePath + "\n";
+		string message = "路径Path\n";
+		message += restoreScene.path + "\n";
 		message += "\n";
 
 		message += "来源source\n";
-		message += param ["source"] + "\n";
+		message += restoreScene.source + "\n";
 		message += "\n";
 
 		message += "参数\n";
-		Hashtable temp = (Hashtable)param ["params"];
+		Hashtable temp = restoreScene.customParams;
 		foreach(string key in temp.Keys) {
 			message += key + ":" + temp[key] + "\n";
 		}

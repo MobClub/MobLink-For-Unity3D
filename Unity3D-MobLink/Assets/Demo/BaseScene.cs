@@ -7,10 +7,8 @@ using com.moblink.unity3d;
 public class BaseScene : MonoBehaviour 
 {
 	// 临时用来在Scene切换时传递参数
-	public static Hashtable tempParam;
+	public static MobLinkScene tempScene;
 
-	// 需还原场景的path
-	private string restorePath;
 	protected virtual void Start () {
 		MobLink.onRestoreScene += OnRestoreScene;
 	}
@@ -20,7 +18,6 @@ public class BaseScene : MonoBehaviour
 	{
 		// 您应该复制这段代码 -> 您的实现方法里.
 		if (!pauseStatus) {
-			restorePath = MobLink.getIntentPath ();
 			MobLink.setIntentHandler ();
 		}
 	}
@@ -28,6 +25,7 @@ public class BaseScene : MonoBehaviour
 
 	protected virtual void OnRestoreScene(MobLinkScene scene)
 	{
+		tempScene = scene;
 		if (scene.path == "/demo/a") 
 		{
 			SceneManager.LoadScene ("SceneA");
