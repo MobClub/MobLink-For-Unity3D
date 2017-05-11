@@ -26,22 +26,28 @@ public class BaseScene : MonoBehaviour
 	}
 	#endif
 
-	protected virtual void OnRestoreScene(Hashtable res)
+	protected virtual void OnRestoreScene(MobLinkScene scene)
 	{
-		tempParam = res;
-		if ("/demo/a" == restorePath) {
+		if (scene.path == "/demo/a") 
+		{
 			SceneManager.LoadScene ("SceneA");
-		} else if ("/demo/b" == restorePath) {
+		} 
+		else if (scene.path == "/demo/b") 
+		{
 			SceneManager.LoadScene ("SceneB");
-		} else if ("/demo/c" == restorePath) {
+		} 
+		else if (scene.path == "/demo/c") 
+		{
 			SceneManager.LoadScene ("SceneC");
-		} else if ("/demo/d" == restorePath) {
+		}
+		else if (scene.path == "/demo/d") 
+		{
 			SceneManager.LoadScene ("SceneD");
 		} else {
 			// do nothing
 		}
-
-		Hashtable customParams = (Hashtable)res ["params"];
+			
+		Hashtable customParams = scene.customParams;
 
 		Debug.Log ("OnRestoreScene(), param:" + customParams);
 	}
@@ -49,4 +55,5 @@ public class BaseScene : MonoBehaviour
 	protected virtual void OnDestroy() {
 		MobLink.onRestoreScene -= OnRestoreScene;
 	}
+		
 }

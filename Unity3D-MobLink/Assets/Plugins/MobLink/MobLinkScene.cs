@@ -10,7 +10,7 @@ namespace com.moblink.unity3d
 		public string source;
 		public Hashtable customParams;
 
-		public MobLinkScene(string scenePath,string sceneSource,Hashtable sceneCustomParams)
+		public MobLinkScene(string scenePath, string sceneSource, Hashtable sceneCustomParams)
 		{
 			try
 			{

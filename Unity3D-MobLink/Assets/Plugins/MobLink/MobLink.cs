@@ -10,14 +10,13 @@ namespace com.moblink.unity3d
 
 		public string AppKey = "1b8898cb51ccb";
 
-		private static bool isInit;
-
 		public delegate void GetMobIdHandler(string mobId);
-		public delegate void RestoreSceneHandler(Hashtable scene);
+		public delegate void RestoreSceneHandler(MobLinkScene scene);
 
 		public static event GetMobIdHandler onGetMobId;
 		public static event RestoreSceneHandler onRestoreScene;
 
+		private static bool isInit;
 		private static MobLink _instance;
 		private static MobLinkImpl moblinkUtils;
 
@@ -55,6 +54,7 @@ namespace com.moblink.unity3d
 
 		#if UNITY_ANDROID
 		/**
+		 * 本方法仅支持安卓
 		 * 解析intent中，跟服务器匹配的scheme数据
 		 * 解析成功后会回调_RestoreCallBack函数
 		 */
@@ -65,6 +65,7 @@ namespace com.moblink.unity3d
 		}
 
 		/**
+		 * 本方法仅支持安卓
 		 * 从当前Intent中取出path.
 		 * @return path.
 		 */
@@ -87,7 +88,13 @@ namespace com.moblink.unity3d
 			{
 				return;
 			}
-			onRestoreScene (res);
+
+			string path = res ["path"].ToString();
+			string source = res ["source"].ToString();
+			Hashtable customParams = (Hashtable)res ["params"];
+
+			MobLinkScene scene = new MobLinkScene (path, source, customParams);
+			onRestoreScene (scene);
 		}
 	}
 
