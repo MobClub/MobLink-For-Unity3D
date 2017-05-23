@@ -53,10 +53,9 @@ namespace com.moblink.unity3d
 		 * 解析intent中，跟服务器匹配的scheme数据
 		 * 解析成功后会回调_RestoreCallBack函数
 		 */
-		public static void setIntentHandler() 
+		public static void updateIntent() 
 		{
-			moblinkUtils.setIntentHandler ();
-			moblinkUtils.setIntentNull ();
+			moblinkUtils.updateIntent ();
 		}
 
 		#endif

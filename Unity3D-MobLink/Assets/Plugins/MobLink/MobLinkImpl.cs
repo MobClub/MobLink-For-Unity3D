@@ -16,16 +16,8 @@ namespace com.moblink.unity3d
 		}
 
 		#if UNITY_ANDROID
-		public virtual void setIntentHandler() {
+		public virtual void updateIntent() {
 			
-		}
-
-		public virtual void setIntentNull() {
-			
-		}
-
-		public virtual string getIntentPath() {
-			return null;
 		}
 		#endif
 	}

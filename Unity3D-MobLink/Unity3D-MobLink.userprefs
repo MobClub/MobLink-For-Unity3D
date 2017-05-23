@@ -1,13 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Plugins\MobLink\Android\AndroidMobLinkImpl.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Plugins\MobLink\MobLinkImpl.cs">
     <Files>
-      <File FileName="Assets\Demo\InnerScene.cs" Line="111" Column="3" />
-      <File FileName="Assets\Demo\BaseScene.cs" Line="5" Column="7" />
-      <File FileName="Assets\Plugins\MobLink\MobLink.cs" Line="32" Column="35" />
-      <File FileName="Assets\Plugins\MobLink\MobLinkImpl.cs" Line="15" Column="4" />
-      <File FileName="Assets\Plugins\MobLink\Android\AndroidMobLinkImpl.cs" Line="22" Column="19" />
-      <File FileName="Assets\Demo\Demo.cs" Line="45" Column="3" />
+      <File FileName="Assets\Demo\InnerScene.cs" Line="1" Column="1" />
+      <File FileName="Assets\Demo\BaseScene.cs" Line="1" Column="1" />
+      <File FileName="Assets\Plugins\MobLink\MobLink.cs" Line="1" Column="1" />
+      <File FileName="Assets\Plugins\MobLink\MobLinkImpl.cs" Line="1" Column="1" />
+      <File FileName="Assets\Plugins\MobLink\Android\AndroidMobLinkImpl.cs" Line="1" Column="1" />
+      <File FileName="Assets\Demo\Demo.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

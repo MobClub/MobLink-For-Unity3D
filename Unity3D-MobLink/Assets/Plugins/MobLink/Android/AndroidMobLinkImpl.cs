@@ -32,15 +32,16 @@ namespace com.moblink.unity3d
 			javaMoblink.CallStatic ("getMobID", map, path, source, l);
 		}
 
-		public override void setIntentHandler() {
+		public override void updateIntent() {
 			AndroidJavaObject activity = getAndroidContext ();
 			object intent = activity.Call<AndroidJavaObject> ("getIntent");
 			object l = new AndroidJavaObject ("com.mob.moblink.unity.ActionListener", MOB_GAMEOBJECT_NAME, MOB_RESTORE_CALLBACK_METHOD);
 			AndroidJavaClass javaMoblink = getAndroidMoblink ();
 			javaMoblink.CallStatic ("setIntentHandler", intent, l);
+			setIntentNull ();
 		}
 
-		public override void setIntentNull() {
+		private void setIntentNull() {
 			AndroidJavaObject activity = getAndroidContext ();
 			activity.Call ("setIntent", null);
 		}

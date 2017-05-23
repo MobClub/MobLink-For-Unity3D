@@ -18,7 +18,7 @@ public class BaseScene : MonoBehaviour
 	{
 		// 您应该复制这段代码 -> 您的实现方法里.
 		if (!pauseStatus) {
-			MobLink.setIntentHandler ();
+			MobLink.updateIntent ();
 		}
 	}
 	#endif
