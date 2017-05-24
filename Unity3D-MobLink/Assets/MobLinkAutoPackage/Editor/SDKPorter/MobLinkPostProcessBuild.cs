@@ -46,7 +46,7 @@ public static class MobLinkPostProcessBuild{
 				<dict>
 					<key>CFBundleURLSchemes</key>
 					<array>
-					<string>support</string>
+					<string>mlink</string>
 					</array>
 				</dict>
 			</array>";
