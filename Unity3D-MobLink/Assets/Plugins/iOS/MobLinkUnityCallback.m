@@ -21,7 +21,7 @@
     return _instance;
 }
 
-- (void)IMLSDKWillRestoreScene:(MLSDKScene *)scene Restore:(void (^)(BOOL isRestore))restoreHandler
+- (void)IMLSDKWillRestoreScene:(MLSDKScene *)scene Restore:(void (^)(BOOL isRestore, RestoreStyle style))restoreHandler
 {
     NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
     
