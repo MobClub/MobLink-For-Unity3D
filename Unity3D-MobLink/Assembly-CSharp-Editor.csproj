@@ -105,6 +105,8 @@
  </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{DF0ABB79-572A-D006-DE0F-2312396B2CF0}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{0FF0B144-9C5F-1C2F-4E48-F4F6FAB99289}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
   </ItemGroup>
