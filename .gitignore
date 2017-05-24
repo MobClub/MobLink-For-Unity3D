@@ -13,3 +13,5 @@ LastBuild.buildreport
 CrashedAssetImports.txt
 *.meta
 *.dll.mdb
+ScriptAssemblies
+assetDatabase3
