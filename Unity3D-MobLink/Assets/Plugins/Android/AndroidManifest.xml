@@ -36,6 +36,13 @@
 				<data android:scheme="mlink" android:host="com.mob.moblink.demo" android:path="/demo/c"/>
 				<data android:scheme="mlink" android:host="com.mob.moblink.demo" android:path="/demo/d"/>
             </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="http" android:host="70r9.ulml.mob.com" />
+                <data android:scheme="https" android:host="70r9.ulml.mob.com" />
+            </intent-filter>
         </activity>
     </application>
 </manifest>
