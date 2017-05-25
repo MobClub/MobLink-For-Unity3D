@@ -17,8 +17,11 @@ git clone https://github.com/MobClub/Unity-For-MobLink.git
 5. 在不同的平台(如微信/浏览器)分享以下链接，然后访问链接
     
     http://f.moblink.mob.com/demo/a?mobid=up
+    
     http://f.moblink.mob.com/demo/b?mobid=up
+    
     http://f.moblink.mob.com/demo/c?mobid=up
+    
     http://f.moblink.mob.com/demo/d?mobid=up
     
 # Unity For MobLink 快速集成文档
@@ -92,8 +95,8 @@ AppLinks配置(AppLinks的支持从SDK-v1.1.0开始支持)
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
-                <data android:scheme="http" android:host="7pb6.ulml.mob.com" />
-                <data android:scheme="https" android:host="7pb6.ulml.mob.com" />
+                <data android:scheme="http" android:host="70r9.ulml.mob.com" />
+                <data android:scheme="https" android:host="70r9.ulml.mob.com" />
             </intent-filter>
 ```
 这里的scheme只能是http或者https, host请从后端配置里读取
