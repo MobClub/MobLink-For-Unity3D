@@ -24,8 +24,8 @@ extern "C" {
     
     void __iosMobLinkRegiterApp(void *appkey)
     {
-        NSString *appKey = [NSString stringWithCString:appkey encoding:NSUTF8StringEncoding];
-        [MobLink registerApp:appKey];
+        // NSString *appKey = [NSString stringWithCString:appkey encoding:NSUTF8StringEncoding];
+        // [MobLink registerApp:appKey];
     }
     
     void __iosMobLinkGetMobId (void *path, void *source, void *params)

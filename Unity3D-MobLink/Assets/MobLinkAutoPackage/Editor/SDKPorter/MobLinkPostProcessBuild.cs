@@ -6,6 +6,7 @@ using System.Collections;
 using System.IO;
 using com.moblink.unity3d;
 using com.moblink.unity3d.sdkporter;
+using System.Runtime.Serialization.Formatters.Binary;
 
 public static class MobLinkPostProcessBuild{
 
@@ -37,6 +38,26 @@ public static class MobLinkPostProcessBuild{
 
 	private static void EditInfoPlist(string projPath)
 	{
+		MobLinkConfig theConfig;
+
+		try
+		{
+			string filePath = Application.dataPath + "/MobLinkAutoPackage/Editor/SDKPorter/MobLinkConfig.bin";
+			BinaryFormatter formatter = new BinaryFormatter();
+			Stream destream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+			MobLinkConfig config = (MobLinkConfig)formatter.Deserialize(destream);
+			destream.Flush();
+			destream.Close();
+			theConfig = config;
+		}
+		catch(Exception)
+		{
+			theConfig = new MobLinkConfig ();
+		}
+
+		string AppKey = @"<key>MOBAppkey</key> <string>" + theConfig.appKey + "</string>";
+		string AppSecret = @"<key>MOBAppSecret</key> <string>" + theConfig.appSecret + "</string>";
+
 		XCPlist plist = new XCPlist (projPath);
 
 		//URL Scheme 添加
@@ -53,6 +74,8 @@ public static class MobLinkPostProcessBuild{
 
 		//在plist里面增加一行
 		plist.AddKey(PlistAdd);
+		plist.AddKey(AppKey);
+		plist.AddKey(AppSecret);
 		plist.Save();
 	}
 }

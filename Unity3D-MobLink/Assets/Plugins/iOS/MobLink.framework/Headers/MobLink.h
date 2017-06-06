@@ -4,7 +4,7 @@
 //
 //  Created by chenjd on 16/11/14.
 //  Copyright © 2016年 Mob. All rights reserved.
-//  线上
+//
 
 #import <Foundation/Foundation.h>
 #import "IMLSDKRestoreDelegate.h"
@@ -14,11 +14,11 @@
 @interface MobLink : NSObject
 
 /**
- 初始化MobLink
-
- @param appKey MobLink应用标识,可在http://mob.com中登录并创建App后获得。
+ 获取MobLinkSDK版本号
+ 
+ @return 版本号
  */
-+ (void)registerApp:(NSString *)appKey;
++ (NSString *)version;
 
 /**
  获取MobId
