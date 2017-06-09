@@ -9,14 +9,16 @@ namespace com.moblink.unity3d
 	public class AndroidMobLinkImpl : MobLinkImpl {
 
 		public const string MOB_GAMEOBJECT_NAME = "MobLink";
-		public const string MOB_GETMOBID_CALLBACK_METHOD = "_MobIdCallback";
+		public const string MOB_GETMOBID_CALLBACK_SUCCESS_METHOD = "_MobIdCallbackSuccess";
+		public const string MOB_GETMOBID_CALLBACK_FAIL_METHOD = "_MobIdCallbackFail";
 		public const string MOB_RESTORE_CALLBACK_METHOD = "_RestoreCallBack";
 
-		public override void InitSDK (String appKey) 
+		public override void setRestoreSceneListener () 
 		{
 			AndroidJavaClass javaMoblink = getAndroidMoblink();;
-			AndroidJavaObject context = getAndroidContext ();
-			javaMoblink.CallStatic ("initSDK", context, appKey);
+			AndroidJavaObject l = new AndroidJavaObject ("com.mob.moblink.unity.RestoreSceneListener", MOB_GAMEOBJECT_NAME, MOB_RESTORE_CALLBACK_METHOD);
+			javaMoblink.CallStatic ("setRestoreSceneListener", l);
+			updateIntent ();
 		}
 
 		public override void GetMobId (MobLinkScene scene) {
@@ -25,25 +27,18 @@ namespace com.moblink.unity3d
 
 		private void GetMobId (string path, string source, Hashtable param) {
 			object map = hashtable2JavaMap(param);
-			object l = new AndroidJavaObject ("com.mob.moblink.unity.GetMobIdListener", MOB_GAMEOBJECT_NAME, MOB_GETMOBID_CALLBACK_METHOD);
+			object l = new AndroidJavaObject ("com.mob.moblink.unity.ActionListener", MOB_GAMEOBJECT_NAME, MOB_GETMOBID_CALLBACK_SUCCESS_METHOD, MOB_GETMOBID_CALLBACK_FAIL_METHOD);
 
 			// call java sdk 
 			AndroidJavaClass javaMoblink = getAndroidMoblink ();
 			javaMoblink.CallStatic ("getMobID", map, path, source, l);
 		}
 
-		public override void updateIntent() {
+		private void updateIntent() {
 			AndroidJavaObject activity = getAndroidContext ();
 			object intent = activity.Call<AndroidJavaObject> ("getIntent");
-			object l = new AndroidJavaObject ("com.mob.moblink.unity.ActionListener", MOB_GAMEOBJECT_NAME, MOB_RESTORE_CALLBACK_METHOD);
 			AndroidJavaClass javaMoblink = getAndroidMoblink ();
-			javaMoblink.CallStatic ("setIntentHandler", intent, l);
-			setIntentNull ();
-		}
-
-		private void setIntentNull() {
-			AndroidJavaObject activity = getAndroidContext ();
-			activity.Call ("setIntent", null);
+			javaMoblink.CallStatic ("updateIntent", activity, intent);
 		}
 
 		private static AndroidJavaClass getAndroidMoblink() 
@@ -60,7 +55,6 @@ namespace com.moblink.unity3d
 
 		private static object getJavaString(String value) 
 		{
-			//return AndroidJNI.NewStringUTF (value);
 			return new AndroidJavaObject("java.lang.String", value);
 		}
 

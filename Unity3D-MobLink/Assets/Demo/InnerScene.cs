@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using com.moblink.unity3d;
 
-public class InnerScene : BaseScene {
+public class InnerScene : MonoBehaviour {
 
 	private float scale = 1.0f;
 
@@ -20,10 +20,9 @@ public class InnerScene : BaseScene {
 	private Rect windowRect;
 	private int boxId;
 
-	protected override void Start() {
-		base.Start ();
+	protected void Start() {
 		currentScene = SceneManager.GetActiveScene().name;
-		restoreScene = BaseScene.tempScene;
+		restoreScene = Demo.tempScene;
 		if ("SceneA" == currentScene) {
 			title = "A界面";
 			label = "A";

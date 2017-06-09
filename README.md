@@ -1,8 +1,11 @@
 # 如何Build Demo For Android 
+
 1. 使用git工具下载代码
+
 ```
 git clone https://github.com/MobClub/Unity-For-MobLink.git
 ```
+
 2. 使用Unity3d v5.x(推荐5.4以上版本)打开
 
 3. 打开Player Settings, 切换到Android选项下

@@ -12,8 +12,8 @@ namespace com.moblink.unity3d
 		public delegate void GetMobIdHandler(string mobId);
 		public delegate void RestoreSceneHandler(MobLinkScene scene);
 
-		public static event GetMobIdHandler onGetMobId;
-		public static event RestoreSceneHandler onRestoreScene;
+		private static event GetMobIdHandler onGetMobId;
+		private static event RestoreSceneHandler onRestoreScene;
 
 		private static bool isInit;
 		private static MobLink _instance;
@@ -52,7 +52,6 @@ namespace com.moblink.unity3d
 				#elif UNITY_IPHONE
 				moblinkUtils = new iOSMobLinkImpl();
 				#endif
-				moblinkUtils.InitSDK (config.appKey);
 				isInit = true;
 			}
 
@@ -65,27 +64,21 @@ namespace com.moblink.unity3d
 			DontDestroyOnLoad(this.gameObject);
 		}
 
-		public static void getMobId(MobLinkScene scene)
+		public static void setRestoreSceneListener (com.moblink.unity3d.MobLink.RestoreSceneHandler sceneHander) {
+			moblinkUtils.setRestoreSceneListener ();
+			onRestoreScene += sceneHander;
+		}
+
+		public static void getMobId(MobLinkScene scene, GetMobIdHandler modIdHandler)
 		{
+			onGetMobId += modIdHandler;
 			moblinkUtils.GetMobId(scene);
 		}
-
-		#if UNITY_ANDROID
-		/**
-		 * 本方法仅支持安卓
-		 * 解析intent中，跟服务器匹配的scheme数据
-		 * 解析成功后会回调_RestoreCallBack函数
-		 */
-		public static void updateIntent() 
-		{
-			moblinkUtils.updateIntent ();
-		}
-
-		#endif
 
 		private void _MobIdCallback (string mobid)
 		{
 			onGetMobId (mobid);
+			onGetMobId = null;
 		}
 			
 		private void _RestoreCallBack (string data)
@@ -103,6 +96,23 @@ namespace com.moblink.unity3d
 
 			MobLinkScene scene = new MobLinkScene (path, source, customParams);
 			onRestoreScene (scene);
+		}
+
+		private void _MobIdCallbackFromAndroid(string data)
+		{
+			Hashtable json = (Hashtable) MiniJSON.jsonDecode(data);
+		}
+
+		private void _MobIdCallbackSuccess(string data)
+		{
+			Hashtable json = (Hashtable) MiniJSON.jsonDecode(data);
+			string modId = json["mobID"].ToString();
+			_MobIdCallback (modId);
+		}
+
+		private void _MobIdCallbackFail(string data)
+		{
+			onGetMobId = null;
 		}
 	}
 

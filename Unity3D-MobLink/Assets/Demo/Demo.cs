@@ -2,10 +2,14 @@
 using System;
 using System.Collections;
 using com.moblink.unity3d;
+using UnityEngine.SceneManagement;
 
 using System.Runtime.InteropServices;
 
-public class Demo : BaseScene {
+public class Demo : MonoBehaviour {
+
+	// 临时用来在Scene切换时传递参数
+	public static MobLinkScene tempScene;
 
 	public GUISkin demoSkin;
 	public MobLink moblink;
@@ -33,15 +37,8 @@ public class Demo : BaseScene {
 	// window rect(dialog)
 	private Rect windowRect;
 
-	protected override void Start () {
-		base.Start ();
-		MobLink.onGetMobId += mobIdHandler;
-	}
-
-	protected override void OnDestroy()
-	{
-		base.OnDestroy ();
-		MobLink.onGetMobId -= mobIdHandler;
+	protected void Start () {
+		MobLink.setRestoreSceneListener (OnRestoreScene);
 	}
 
 	void OnGUI ()
@@ -138,7 +135,7 @@ public class Demo : BaseScene {
 			custom.Add (key3, value3);
 		}
 		MobLinkScene scene = new MobLinkScene (pathString, source, custom);
-		MobLink.getMobId (scene);
+		MobLink.getMobId (scene, mobIdHandler);
 	}
 
 	void clickShare()
@@ -189,5 +186,34 @@ public class Demo : BaseScene {
 			boxId = 0;
 		}
 	}
-		
+
+	/*
+	 * 全局的场景还原监听函数 
+	 */
+	protected static void OnRestoreScene(MobLinkScene scene)
+	{
+		tempScene = scene;
+		if (scene.path == "/demo/a") 
+		{
+			SceneManager.LoadScene ("SceneA");
+		} 
+		else if (scene.path == "/demo/b") 
+		{
+			SceneManager.LoadScene ("SceneB");
+		} 
+		else if (scene.path == "/demo/c") 
+		{
+			SceneManager.LoadScene ("SceneC");
+		}
+		else if (scene.path == "/demo/d") 
+		{
+			SceneManager.LoadScene ("SceneD");
+		} else {
+			// do nothing
+		}
+
+		Hashtable customParams = scene.customParams;
+
+		Debug.Log ("OnRestoreScene(), param:" + customParams);
+	}
 }
