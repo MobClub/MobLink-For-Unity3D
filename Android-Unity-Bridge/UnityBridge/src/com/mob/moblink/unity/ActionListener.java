@@ -15,6 +15,14 @@ import java.util.HashMap;
  *     <li>method 是回调函数名, 注意此函数签名与 UnitySendMessage中传递的函数签名一致</li>
  *     <li>回调的参数是json字符串</li>
  * </ul>
+ *
+ * 鉴于与ios平台保持入口一致, 约定统一返回一致数据结构, 如下所示：<br/>
+ * <pre>
+ *     { "mobid" : "abc",
+ *		 "result" : 0/1,
+ *		 "errorMsg" : "xxx";}
+ * </pre>
+ *
  */
 public class ActionListener extends Object implements com.mob.moblink.ActionListener {
 	private String gameObjectName;
@@ -36,6 +44,9 @@ public class ActionListener extends Object implements com.mob.moblink.ActionList
 
 	@Override
 	public void onResult(HashMap<String, Object> params) {
+		params.put("mobid", params.remove("mobID"));
+		params.put("result", 1);
+		params.put("errorMsg", "");
 		JSONObject json = new JSONObject(params);
 		String value = json.toString();
 		UnitySendMessage(gameObjectName, callbackSuccessMethod, value);
@@ -43,7 +54,11 @@ public class ActionListener extends Object implements com.mob.moblink.ActionList
 
 	@Override
 	public void onError(Throwable t) {
-		JSONObject json = new JSONObject();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("mobid", "");
+		params.put("result", 0);
+		params.put("errorMsg", t.toString());
+		JSONObject json = new JSONObject(params);
 		String value = json.toString();
 		UnitySendMessage(gameObjectName, callbackFailMethod, value);
 	}

@@ -9,8 +9,8 @@ namespace com.moblink.unity3d
 	public class AndroidMobLinkImpl : MobLinkImpl {
 
 		public const string MOB_GAMEOBJECT_NAME = "MobLink";
-		public const string MOB_GETMOBID_CALLBACK_SUCCESS_METHOD = "_MobIdCallbackSuccess";
-		public const string MOB_GETMOBID_CALLBACK_FAIL_METHOD = "_MobIdCallbackFail";
+		public const string MOB_GETMOBID_CALLBACK_SUCCESS_METHOD = "_MobIdCallback";
+		public const string MOB_GETMOBID_CALLBACK_FAIL_METHOD = "_MobIdCallback";
 		public const string MOB_RESTORE_CALLBACK_METHOD = "_RestoreCallBack";
 
 		public override void setRestoreSceneListener () 

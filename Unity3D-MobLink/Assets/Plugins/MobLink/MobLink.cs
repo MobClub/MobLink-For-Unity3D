@@ -75,9 +75,13 @@ namespace com.moblink.unity3d
 			moblinkUtils.GetMobId(scene);
 		}
 
-		private void _MobIdCallback (string mobid)
+		private void _MobIdCallback (string data)
 		{
-			onGetMobId (mobid);
+			// 解析出mobId
+			Hashtable json = (Hashtable) MiniJSON.jsonDecode(data);
+			string modId = json["mobID"].ToString();
+
+			onGetMobId (modId);
 			onGetMobId = null;
 		}
 			
@@ -96,23 +100,6 @@ namespace com.moblink.unity3d
 
 			MobLinkScene scene = new MobLinkScene (path, source, customParams);
 			onRestoreScene (scene);
-		}
-
-		private void _MobIdCallbackFromAndroid(string data)
-		{
-			Hashtable json = (Hashtable) MiniJSON.jsonDecode(data);
-		}
-
-		private void _MobIdCallbackSuccess(string data)
-		{
-			Hashtable json = (Hashtable) MiniJSON.jsonDecode(data);
-			string modId = json["mobID"].ToString();
-			_MobIdCallback (modId);
-		}
-
-		private void _MobIdCallbackFail(string data)
-		{
-			onGetMobId = null;
 		}
 	}
 
