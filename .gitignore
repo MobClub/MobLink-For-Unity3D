@@ -34,3 +34,16 @@ sysinfo.txt
 
 # we need unitypackage 
 #*.unitypackage
+
+# Android-Unity-Bridge
+*.iml
+.gradle
+.idea
+gradle
+build
+captures
+.DS_Store
+local.properties
+.externalNativeBuild
+
+
