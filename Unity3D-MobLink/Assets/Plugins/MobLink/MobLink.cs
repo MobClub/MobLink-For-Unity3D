@@ -79,7 +79,7 @@ namespace com.moblink.unity3d
 		{
 			// 解析出mobId
 			Hashtable json = (Hashtable) MiniJSON.jsonDecode(data);
-			string modId = json["mobID"].ToString();
+			string modId = json["mobid"].ToString();
 
 			onGetMobId (modId);
 			onGetMobId = null;
