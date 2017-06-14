@@ -5,11 +5,17 @@
 下载[Unity-For-MobLink](https://github.com/MobClub/Unity-For-MobLink),打开项目双击MobLink.unitypackage相关文件。注意该操作可能会覆盖您原来已经存在的文件！ 
 
 
-## 拖入MobLink并配置MobLink AppKey
+## 拖入MobLink并配置应用信息
 
 导入unitypackage后,在Plugins - MobLink 中找到MobLink.prefab。将其拖载到您的项目中,如图示
+![](https://lh3.googleusercontent.com/-RvxnRpiii5w/WUDd_EPdm4I/AAAAAAAABlc/QwRZ5BngtOwnjifRJhfFvN1MAAFaBL33wCHMYCw/I/14974233545014.jpg)
 
-![14937771831429](https://lh3.googleusercontent.com/-lKH-XGIWld4/WQlee37dhVI/AAAAAAAABj0/Z1ZSL55KF0EYmRpC9VCSWF_ZJRuHqUb9QCHM/I/14937771831429.jpg)
+### iOS配置应用信息
+
+![](https://lh3.googleusercontent.com/-sN5_9Oe_iHg/WUDekgFs53I/AAAAAAAABlk/oEliwwhY0BwIQda9ney-K_8yPcfK3CbEACHMYCw/I/14974235048946.jpg)
+
+### Android配置应用信息
+
 
 ## 调用接口及获取回调
 
