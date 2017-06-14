@@ -24,6 +24,8 @@ using UnityEngine;
 
 namespace com.moblink.unity3d
 {
+	#if UNITY_IPHONE
+
 	[CustomEditor(typeof(MobLink))]
 	[ExecuteInEditMode]
 	public class MLConfigEditor : Editor {
@@ -79,4 +81,6 @@ namespace com.moblink.unity3d
 		}
 
 	}
+
+	#endif
 }

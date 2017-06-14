@@ -1,0 +1,14 @@
+{
+    "group":       "",
+    "libs":        [],
+    "frameworks":  [],
+    "zips":         [],                
+    "headerpaths": [],
+    "librarypaths": [],
+    "files":       [],
+    "folders":     [],
+    "buildSettings": { 
+        "OTHER_LDFLAGS" : ["-lz"]
+    },
+    "excludes":    ["^.*.meta$", "^.*.mdown^", "^.*.pdf$"]
+}

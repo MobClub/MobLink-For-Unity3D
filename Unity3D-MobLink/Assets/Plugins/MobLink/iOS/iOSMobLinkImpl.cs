@@ -10,15 +10,7 @@ namespace com.moblink.unity3d
 	public class iOSMobLinkImpl : MobLinkImpl 
 	{
 		[DllImport("__Internal")]
-		private static extern void __iosMobLinkRegiterApp (string appKey);
-
-		[DllImport("__Internal")]
 		private static extern void __iosMobLinkGetMobId (string path, string source, string customParamsStr);
-
-		public override void InitSDK (String appKey) 
-		{
-			__iosMobLinkRegiterApp (appKey);
-		}
 
 		public override void GetMobId (MobLinkScene scene)
 		{

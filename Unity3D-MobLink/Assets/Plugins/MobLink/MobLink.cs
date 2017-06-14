@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
 using System;
-using System.IO;
 using System.Collections;
-using System.Runtime.InteropServices;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace com.moblink.unity3d
 {
@@ -19,32 +16,8 @@ namespace com.moblink.unity3d
 		private static MobLink _instance;
 		private static MobLinkImpl moblinkUtils;
 
-		private MobLinkConfig getConfig()
-		{
-			MobLinkConfig theConfig;
-
-			try
-			{
-				string filePath = Application.dataPath + "/MobLinkAutoPackage/Editor/SDKPorter/MobLinkConfig.bin";
-				BinaryFormatter formatter = new BinaryFormatter();
-				Stream destream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
-				MobLinkConfig config = (MobLinkConfig)formatter.Deserialize(destream);
-				destream.Flush();
-				destream.Close();
-				theConfig = config;
-			}
-			catch(Exception)
-			{
-				theConfig = new MobLinkConfig ();
-			}
-
-			return theConfig;
-		}
-
 		void Awake()
 		{
-			MobLinkConfig config = getConfig ();
-
 			if (!isInit) 
 			{
 				#if UNITY_ANDROID

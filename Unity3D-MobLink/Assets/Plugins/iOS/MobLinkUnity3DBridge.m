@@ -19,14 +19,7 @@ static MobLinkUnityCallback *_callback = nil;
 extern "C" {
 #endif
 
-    extern void __iosMobLinkRegiterApp(void *appkey);
     extern void __iosMobLinkGetMobId (void *scenepath, void *source, void *params);
-    
-    void __iosMobLinkRegiterApp(void *appkey)
-    {
-        // NSString *appKey = [NSString stringWithCString:appkey encoding:NSUTF8StringEncoding];
-        // [MobLink registerApp:appKey];
-    }
     
     void __iosMobLinkGetMobId (void *path, void *source, void *params)
     {
@@ -41,7 +34,8 @@ extern "C" {
             NSString *str  = @"";
             if (mobid)
             {
-                str = mobid;
+                NSDictionary *result = @{@"mobid" : mobid};
+                str = [MOBFJson jsonStringFromObject:result];
             }
             
             UnitySendMessage([@"MobLink" UTF8String], "_MobIdCallback", [str UTF8String]);
