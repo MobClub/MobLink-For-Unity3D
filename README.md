@@ -1,32 +1,3 @@
-# 如何Build Demo For Android 
-
-1. 使用git工具下载代码
-
-```
-git clone https://github.com/MobClub/Unity-For-MobLink.git
-```
-
-2. 使用Unity3d v5.x(推荐5.4以上版本)打开
-
-3. 打开Player Settings, 切换到Android选项下
- 
-    请使用我们提供的签名文件， 文件地址：/Unity3D-MobLink/demokey.keystore
-    签名密码：123456
-    
-    ![moblink_unity3d_sign](http://wiki.mob.com/wp-content/uploads/2014/11/moblink_unity3d_sign.png)
-    
-4. build 成功后，安装apk到手机上
-
-5. 在不同的平台(如微信/浏览器)分享以下链接，然后访问链接
-    
-    http://f.moblink.mob.com/demo/a?mobid=up
-    
-    http://f.moblink.mob.com/demo/b?mobid=up
-    
-    http://f.moblink.mob.com/demo/c?mobid=up
-    
-    http://f.moblink.mob.com/demo/d?mobid=up
-    
 # Unity For MobLink 快速集成文档
 
 ## 下载并导入MobLink
@@ -139,5 +110,36 @@ AppLinks配置(AppLinks的支持从SDK-v1.1.0开始支持)
 在生成Xcode项目后,配置在MobLink后台所填入的Universal Link
 
 ![14937849253534](https://lh3.googleusercontent.com/-sj8hXdc0WUA/WQlemadRzLI/AAAAAAAABj8/Jh9JQ2YkEWIONNeqHXsAnhioSP16FCs_gCHM/I/14937849253534.png)
+
+
+# 如何Build Demo For Android 
+
+1. 使用git工具下载代码
+
+```
+git clone https://github.com/MobClub/Unity-For-MobLink.git
+```
+
+2. 使用Unity3d v5.x(推荐5.4以上版本)打开
+
+3. 打开Player Settings, 切换到Android选项下
+ 
+    请使用我们提供的签名文件， 文件地址：/Unity3D-MobLink/demokey.keystore
+    签名密码：123456
+    
+    ![moblink_unity3d_sign](http://wiki.mob.com/wp-content/uploads/2014/11/moblink_unity3d_sign.png)
+    
+4. build 成功后，安装apk到手机上
+
+5. 在不同的平台(如微信/浏览器)分享以下链接，然后访问链接
+    
+    http://f.moblink.mob.com/demo/a?mobid=up
+    
+    http://f.moblink.mob.com/demo/b?mobid=up
+    
+    http://f.moblink.mob.com/demo/c?mobid=up
+    
+    http://f.moblink.mob.com/demo/d?mobid=up
+    
 
 
