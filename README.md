@@ -38,21 +38,21 @@
 ### 编写和设置场景还原的回调
 
 ```
-	// 全局的场景还原监听函数
-	protected static void OnRestoreScene(MobLinkScene scene)
-	{
-		Console.Write ("path:" + scene.path);
-		Console.Write ("source:" + scene.source);
-		Console.Write ("params:" + MiniJSON.jsonEncode (scene.customParams));
-	}
+// 全局的场景还原监听函数
+protected static void OnRestoreScene(MobLinkScene scene)
+{
+	Console.Write ("path:" + scene.path);
+	Console.Write ("source:" + scene.source);
+	Console.Write ("params:" + MiniJSON.jsonEncode (scene.customParams));
+}
 ```
 
 一般在第一个场景的MonoBehaviour.Start()函数中设置监听
 
 ```
-	protected void Start () {
-		MobLink.setRestoreSceneListener (OnRestoreScene);
-	}
+protected void Start () {
+	MobLink.setRestoreSceneListener (OnRestoreScene);
+}
 ```
 
 ### 编写modId的回调和调用获取mobid
