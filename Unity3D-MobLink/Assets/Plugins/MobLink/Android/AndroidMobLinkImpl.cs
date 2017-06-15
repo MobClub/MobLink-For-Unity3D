@@ -13,8 +13,11 @@ namespace com.moblink.unity3d
 		public const string MOB_GETMOBID_CALLBACK_FAIL_METHOD = "_MobIdCallback";
 		public const string MOB_RESTORE_CALLBACK_METHOD = "_RestoreCallBack";
 
+		private bool isInited = false;
+
 		public override void setRestoreSceneListener () 
 		{
+			initMobSdk ();
 			AndroidJavaClass javaMoblink = getAndroidMoblink();;
 			AndroidJavaObject l = new AndroidJavaObject ("com.mob.moblink.unity.RestoreSceneListener", MOB_GAMEOBJECT_NAME, MOB_RESTORE_CALLBACK_METHOD);
 			javaMoblink.CallStatic ("setRestoreSceneListener", l);
@@ -26,6 +29,7 @@ namespace com.moblink.unity3d
 		}
 
 		private void GetMobId (string path, string source, Hashtable param) {
+			initMobSdk ();
 			object map = hashtable2JavaMap(param);
 			object l = new AndroidJavaObject ("com.mob.moblink.unity.ActionListener", MOB_GAMEOBJECT_NAME, MOB_GETMOBID_CALLBACK_SUCCESS_METHOD, MOB_GETMOBID_CALLBACK_FAIL_METHOD);
 
@@ -39,6 +43,15 @@ namespace com.moblink.unity3d
 			object intent = activity.Call<AndroidJavaObject> ("getIntent");
 			AndroidJavaClass javaMoblink = getAndroidMoblink ();
 			javaMoblink.CallStatic ("updateIntent", activity, intent);
+		}
+
+		private void initMobSdk() {
+			if (!isInited) {
+				AndroidJavaObject jo = getAndroidContext ();
+				AndroidJavaClass jc = new AndroidJavaClass ("com.mob.MobSDK");
+				jc.CallStatic ("init", jo);
+			}
+			isInited = true;
 		}
 
 		private static AndroidJavaClass getAndroidMoblink() 

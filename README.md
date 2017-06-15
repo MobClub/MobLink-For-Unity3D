@@ -31,7 +31,7 @@
 
 #### Android配置及注意事项(iOS开发者可忽略)
 
-请参考原生文档[http://wiki.mob.com/sdk-moblink-android-2-0-0/](http://wiki.mob.com/sdk-moblink-android-2-0-0/)) 进行配置
+在这里只需要配置AndroidManifest部分, 请参考原生文档[http://wiki.mob.com/sdk-moblink-android-2-0-0/](http://wiki.mob.com/sdk-moblink-android-2-0-0/)) 中的"配置AndroidManiFest.xml文件"进行配置
 
 ## 调用接口及获取回调
 
