@@ -8,55 +8,28 @@
 ## 拖入MobLink并配置应用信息
 
 导入unitypackage后,在Plugins - MobLink 中找到MobLink.prefab。将其拖载到您的项目中,如图示
+
 ![](https://lh3.googleusercontent.com/-RvxnRpiii5w/WUDd_EPdm4I/AAAAAAAABlc/QwRZ5BngtOwnjifRJhfFvN1MAAFaBL33wCHMYCw/I/14974233545014.jpg)
 
-### iOS配置应用信息
+#### iOS配置及注意事项(Android开发者可忽略)
+1.Unity切换到iOS环境后，点击以被拖进去的MobLink,在编辑器右侧填入您的AppKey,AppSecret
 
 ![](https://lh3.googleusercontent.com/-sN5_9Oe_iHg/WUDekgFs53I/AAAAAAAABlk/oEliwwhY0BwIQda9ney-K_8yPcfK3CbEACHMYCw/I/14974235048946.jpg)
 
-### Android配置应用信息
+2.预配置Scheme
+找到MobLinkAutoPackage - Editor - SDKPorter - MobLinkPostProcessBuild.cs
+在EditInfoPlist方法中，修改CFBundleURLSchemes 下的值,将其设置为您在MobLink后台填入的 URI Scheme (注意不带'://')
+
+![14937845549367](https://lh3.googleusercontent.com/-_le-4mpzKIw/WQlelJ3Q6uI/AAAAAAAABj4/443zqhF8bNAD1qPOwRathPkF4BXFslyBQCHM/I/14937845549367.jpg)
+
+3.配置Universal Link(**本步骤在生成的Xcode中操作**)
+
+在生成Xcode项目后,配置在MobLink后台所填入的Universal Link
+
+![14937849253534](https://lh3.googleusercontent.com/-sj8hXdc0WUA/WQlemadRzLI/AAAAAAAABj8/Jh9JQ2YkEWIONNeqHXsAnhioSP16FCs_gCHM/I/14937849253534.png)
 
 
-## 调用接口及获取回调
-
-### 调用获取mobid
-
-```
-Hashtable custom = new Hashtable ();
-custom ["ChapterID"] = 1001;
-custom ["ChapterName"] = "Dragon Fire";
-//构造场景参数
-MobLinkScene scene = new MobLinkScene ("/chapter1/dragon", "userid-123456", custom);
-//获取mobid
-MobLink.getMobId (scene);
-```
-
-
-### 设置回调
-
-```
-//获取mobid之回调
-void mobIdHandler (string mobid)
-{
-	Console.Write ("Received MobId:" + mobid);
-}
-		
-//场景恢复之回调(在应用唤醒时此回调会被触发)
-void sceneHandler (MobLinkScene scene)
-{
-	Console.Write ("path:" + scene.path);
-	Console.Write ("source:" + scene.source);
-	Console.Write ("params:" + MiniJSON.jsonEncode (scene.customParams));
-}
-```
-
-```
-MobLink.onGetMobId += mobIdHandler;
-MobLink.onRestoreScene += sceneHandler;
-```
-
-
-### 对于Android端的一些配置
+#### Android配置及注意事项(iOS开发者可忽略)
 
 1. 配置scheme: 
 Android平台的scheme是在AndroidManifest里配置的，需要在Activity的声明处增加如下配置：
@@ -106,21 +79,42 @@ protected void onNewIntent(Intent intent) {
 }
 ```
 
+## 调用接口及获取回调
 
-### 对于iOS端的一些配置
+### 调用获取mobid
 
-预配置Scheme:
-找到MobLinkAutoPackage - Editor - SDKPorter - MobLinkPostProcessBuild.cs
-在EditInfoPlist方法中，修改CFBundleURLSchemes 下的值,将其设置为您在MobLink后台填入的 URI Scheme (注意不带'://')
+```
+Hashtable custom = new Hashtable ();
+custom ["ChapterID"] = 1001;
+custom ["ChapterName"] = "Dragon Fire";
+//构造场景参数
+MobLinkScene scene = new MobLinkScene ("/chapter1/dragon", "userid-123456", custom);
+//获取mobid
+MobLink.getMobId (scene);
+```
 
-![14937845549367](https://lh3.googleusercontent.com/-_le-4mpzKIw/WQlelJ3Q6uI/AAAAAAAABj4/443zqhF8bNAD1qPOwRathPkF4BXFslyBQCHM/I/14937845549367.jpg)
+### 设置回调
 
+```
+//获取mobid之回调
+void mobIdHandler (string mobid)
+{
+	Console.Write ("Received MobId:" + mobid);
+}
+		
+//场景恢复之回调(在应用唤醒时此回调会被触发)
+void sceneHandler (MobLinkScene scene)
+{
+	Console.Write ("path:" + scene.path);
+	Console.Write ("source:" + scene.source);
+	Console.Write ("params:" + MiniJSON.jsonEncode (scene.customParams));
+}
+```
 
-配置Universal Link:
-在生成Xcode项目后,配置在MobLink后台所填入的Universal Link
-
-![14937849253534](https://lh3.googleusercontent.com/-sj8hXdc0WUA/WQlemadRzLI/AAAAAAAABj8/Jh9JQ2YkEWIONNeqHXsAnhioSP16FCs_gCHM/I/14937849253534.png)
-
+```
+MobLink.onGetMobId += mobIdHandler;
+MobLink.onRestoreScene += sceneHandler;
+```
 
 # 如何Build Demo For Android 
 
