@@ -31,89 +31,50 @@
 
 #### Android配置及注意事项(iOS开发者可忽略)
 
-1. 配置scheme: 
-Android平台的scheme是在AndroidManifest里配置的，需要在Activity的声明处增加如下配置：
-
-```
-<intent-filter>
-    <action android:name="android.intent.action.VIEW" />
-    <category android:name="android.intent.category.BROWSABLE"/>
-    <category android:name="android.intent.category.DEFAULT"/>
-    <data android:scheme="mlink" android:host="com.mob.moblink.demo">
-</intent-filter>
-```
-scheme和host都由您自己定义(最好是唯一的)，但要与后端配置保持一致。
-AppLinks配置(AppLinks的支持从SDK-v1.1.0开始支持)
-
-```
-<intent-filter android:autoVerify="true">
-    <action android:name="android.intent.action.VIEW" />
-    <category android:name="android.intent.category.DEFAULT"/>
-    <category android:name="android.intent.category.BROWSABLE"/>
-    <data android:scheme="http" android:host="70r9.ulml.mob.com" />
-    <data android:scheme="https" android:host="70r9.ulml.mob.com" />
-</intent-filter>
-```
-这里的scheme只能是http或者https, host请从后端配置里读取
-![aaaa](http://wiki.mob.com/wp-content/uploads/2017/02/aaaa.png)
-
-2. 在所有Scene中增加如下代码
-
-```
-#if UNITY_ANDROID
-protected virtual void OnApplicationPause(bool pauseStatus)
-{
-    // 您应该复制这段代码 -> 您的实现方法里.
-    if (!pauseStatus) {
-        MobLink.updateIntent ();
-    }
-}
-#endif
-```
-
-3. 仅当你的Activity的launchMode为singleTop时，您才需要这样处理(Android代码)
-
-```
-protected void onNewIntent(Intent intent) {
-    setIntent(intent);
-}
-```
+请参考原生文档[http://wiki.mob.com/sdk-moblink-android-2-0-0/](http://wiki.mob.com/sdk-moblink-android-2-0-0/)) 进行配置
 
 ## 调用接口及获取回调
 
-### 调用获取mobid
+### 编写和设置场景还原的回调
+
+```
+	// 全局的场景还原监听函数
+	protected static void OnRestoreScene(MobLinkScene scene)
+	{
+		Console.Write ("path:" + scene.path);
+		Console.Write ("source:" + scene.source);
+		Console.Write ("params:" + MiniJSON.jsonEncode (scene.customParams));
+	}
+```
+
+一般在第一个场景的MonoBehaviour.Start()函数中设置监听
+
+```
+	protected void Start () {
+		MobLink.setRestoreSceneListener (OnRestoreScene);
+	}
+```
+
+### 编写modId的回调和调用获取mobid
+
+```
+// 获取mobid的回调
+void mobIdHandler (string mobid)
+{
+	Console.Write ("Received MobId:" + mobid);
+}
+```
 
 ```
 Hashtable custom = new Hashtable ();
 custom ["ChapterID"] = 1001;
 custom ["ChapterName"] = "Dragon Fire";
+
 //构造场景参数
 MobLinkScene scene = new MobLinkScene ("/chapter1/dragon", "userid-123456", custom);
-//获取mobid
-MobLink.getMobId (scene);
-```
 
-### 设置回调
-
-```
-//获取mobid之回调
-void mobIdHandler (string mobid)
-{
-	Console.Write ("Received MobId:" + mobid);
-}
-		
-//场景恢复之回调(在应用唤醒时此回调会被触发)
-void sceneHandler (MobLinkScene scene)
-{
-	Console.Write ("path:" + scene.path);
-	Console.Write ("source:" + scene.source);
-	Console.Write ("params:" + MiniJSON.jsonEncode (scene.customParams));
-}
-```
-
-```
-MobLink.onGetMobId += mobIdHandler;
-MobLink.onRestoreScene += sceneHandler;
+// 获取mobid
+MobLink.getMobId (scene, mobIdHandler);
 ```
 
 # 如何Build Demo For Android 
