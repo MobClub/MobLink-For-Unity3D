@@ -43,8 +43,9 @@ public class ActionListener extends Object implements com.mob.moblink.ActionList
 	}
 
 	@Override
-	public void onResult(HashMap<String, Object> params) {
-		params.put("mobid", params.remove("mobID"));
+	public void onResult(Object o) {
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("mobid", o);
 		params.put("result", 1);
 		params.put("errorMsg", "");
 		JSONObject json = new JSONObject(params);
