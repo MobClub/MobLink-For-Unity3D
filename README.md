@@ -99,12 +99,9 @@ git clone https://github.com/MobClub/Unity-For-MobLink.git
 5. 在不同的平台(如微信/浏览器)分享以下链接，然后访问链接
     
     http://f.moblink.mob.com/demo/a?mobid=up
-    
-    adfadsfadf
-    
+        
     http://f.moblink.mob.com/demo/b?mobid=up
     
-    sdfasdf
     http://f.moblink.mob.com/demo/c?mobid=up
     
     http://f.moblink.mob.com/demo/d?mobid=up
