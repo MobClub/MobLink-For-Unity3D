@@ -29,19 +29,14 @@ namespace com.moblink.unity3d
 		}
 
 		public override void GetMobId (MobLinkScene scene) {
-			GetMobId (scene.path, scene.source, scene.customParams);
-		}
-
-		private void GetMobId (string path, string source, Hashtable param) {
 			initMobSdk ();
-			object map = hashtable2JavaMap(param);
-			AndroidJavaClass javaClazz = new AndroidJavaClass ("com.mob.moblink.Scene");
-			object scene = javaClazz.CallStatic<AndroidJavaObject> ("fromMap", map);
-			object l = new AndroidJavaObject ("com.mob.moblink.unity.ActionListener", MOB_GAMEOBJECT_NAME, MOB_GETMOBID_CALLBACK_SUCCESS_METHOD, MOB_GETMOBID_CALLBACK_FAIL_METHOD);
+
+			AndroidJavaObject javaScene = scene2Java (scene);
+			AndroidJavaObject l = new AndroidJavaObject ("com.mob.moblink.unity.ActionListener", MOB_GAMEOBJECT_NAME, MOB_GETMOBID_CALLBACK_SUCCESS_METHOD, MOB_GETMOBID_CALLBACK_FAIL_METHOD);
 
 			// call java sdk 
 			AndroidJavaClass javaMoblink = getAndroidMoblink ();
-			javaMoblink.CallStatic ("getMobID", scene, l);
+			javaMoblink.CallStatic ("getMobID", javaScene, l);
 		}
 
 		private void updateIntent() {
@@ -77,16 +72,35 @@ namespace com.moblink.unity3d
 			return new AndroidJavaObject("java.lang.String", value);
 		}
 
-		private static object hashtable2JavaMap(Hashtable map) 
+		private static AndroidJavaObject scene2Java(MobLinkScene scene)
+		{
+			Hashtable table = new Hashtable ();
+			table.Add ("path", scene.path);
+			table.Add ("source", scene.source);
+			table.Add ("params", scene.customParams);
+
+			AndroidJavaObject rootMap = hashtable2JavaMap (table);
+			AndroidJavaClass javaClazz = new AndroidJavaClass ("com.mob.moblink.Scene");
+			AndroidJavaObject javaScene = javaClazz.CallStatic<AndroidJavaObject> ("fromMap", rootMap);
+			return javaScene;
+		}
+
+		private static AndroidJavaObject hashtable2JavaMap(Hashtable map) 
 		{
 			AndroidJavaObject javaMap = new AndroidJavaObject ("java.util.HashMap");
 			IntPtr putMethod = AndroidJNIHelper.GetMethodID (javaMap.GetRawClass(), "put", "Ljava.lang.Object;(Ljava.lang.Object;Ljava.lang.Object;)", false);
 
 			foreach (string key in map.Keys)  
 			{
-				string value = map[key].ToString();
-				object javaKey = getJavaString(key);
-				object javaValue = getJavaString(value);
+				object value = map[key];
+				object javaKey = getJavaString(key.ToString());
+				object javaValue;
+				if (value.GetType () == typeof(Hashtable)) {
+					javaValue = hashtable2JavaMap ((Hashtable)value);
+				} else {
+					javaValue = getJavaString(value.ToString());
+				}
+
 				object[] arr = new object[2];
 				arr[0] = javaKey; arr[1] = javaValue;
 
