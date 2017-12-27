@@ -1,4 +1,16 @@
 sceneSetups:
-- path: Assets/SceneD.unity
+- path: Assets/Demo.unity
   isLoaded: 1
   isActive: 1
+- path: Assets/SceneD.unity
+  isLoaded: 1
+  isActive: 0
+- path: Assets/SceneA.unity
+  isLoaded: 1
+  isActive: 0
+- path: Assets/SceneB.unity
+  isLoaded: 1
+  isActive: 0
+- path: Assets/SceneC.unity
+  isLoaded: 1
+  isActive: 0
