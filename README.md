@@ -5,6 +5,7 @@
 下载[Unity-For-MobLink](https://github.com/MobClub/Unity-For-MobLink),打开项目双击MobLink.unitypackage相关文件。注意该操作可能会覆盖您原来已经存在的文件！ 
 
 
+
 ## 拖入MobLink并配置应用信息
 
 导入unitypackage后,在Plugins - MobLink 中找到MobLink.prefab。将其拖载到您的项目中,如图示
@@ -17,10 +18,9 @@
 ![](https://lh3.googleusercontent.com/-sN5_9Oe_iHg/WUDekgFs53I/AAAAAAAABlk/oEliwwhY0BwIQda9ney-K_8yPcfK3CbEACHMYCw/I/14974235048946.jpg)
 
 2.预配置Scheme
-找到MobLinkAutoPackage - Editor - SDKPorter - MobLinkPostProcessBuild.cs
-在EditInfoPlist方法中，修改CFBundleURLSchemes 下的值,将其设置为您在MobLink后台填入的 URI Scheme (注意不带'://')
+找到Plugins - iOS - MobLink - Editor - ML.mobpds,对其中的CFBundleURLSchemes进行设定,将其设置为您在MobLink后台填入的 URI Scheme (注意不带'://')
+![](https://lh3.googleusercontent.com/-ICTLNLOe3QE/WnvzPVRUAyI/AAAAAAAABno/z31bgFIllzYxjm7ltZzsvAxKPD_TDmzHQCHMYCw/I/scheme.png)
 
-![14937845549367](https://lh3.googleusercontent.com/-_le-4mpzKIw/WQlelJ3Q6uI/AAAAAAAABj4/443zqhF8bNAD1qPOwRathPkF4BXFslyBQCHM/I/14937845549367.jpg)
 
 3.配置Universal Link(**本步骤在生成的Xcode中操作**)
 
@@ -106,3 +106,5 @@ git clone https://github.com/MobClub/Unity-For-MobLink.git
     
     http://f.moblink.mob.com/demo/d?mobid=up
     
+
+
