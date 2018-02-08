@@ -1,0 +1,6 @@
+{
+    "folders":     ["/SDK"],
+    "buildSettings": { 
+        "OTHER_LDFLAGS" : ["-lz"]
+    }
+}
