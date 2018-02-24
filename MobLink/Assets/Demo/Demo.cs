@@ -10,9 +10,7 @@ public class Demo : MonoBehaviour {
 
 	// 临时用来在Scene切换时传递参数
 	public static MobLinkScene tempScene;
-
 	public GUISkin demoSkin;
-	public MobLink moblink;
 
 	private float scale = 1.0f;
 
