@@ -4,6 +4,7 @@
 /MobLink/[Bb]uild/
 /MobLink/[Bb]uilds/
 /MobLink/Assets/AssetStoreTools*
+/MobLink/Assets/Plugins/Android/AndroidManifest.xml
 
 # Visual Studio 2015 cache directory
 /MobLink/.vs/
@@ -47,4 +48,5 @@ captures
 local.properties
 .externalNativeBuild
 
-
+# 
+Android/AndroidManifest.xml
