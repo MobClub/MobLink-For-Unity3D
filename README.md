@@ -1,4 +1,17 @@
-# Unity For MobLink 快速集成文档
+# MobLink For Unity3D 
+
+### 本插件是基于[MobLink](http://moblink.mob.com/) 对Unity3D进行插件扩充支持。目的是方便Unity开发者更方便地集成使用MobLink。
+
+**当前支持的 MobLink 版本**
+
+- iOS v2.2.0
+- Android v2.2.0
+
+**集成文档**
+
+- [快速集成文档](http://wiki.mob.com/moblink-unity3d-doc/)
+
+----
 
 ## 下载并导入MobLink
 
