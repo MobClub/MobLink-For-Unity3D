@@ -288,7 +288,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1376145537}
-  - component: {fileID: 1376145536}
   - component: {fileID: 1376145535}
   m_Layer: 0
   m_Name: MobLink
@@ -300,25 +299,12 @@ GameObject:
 --- !u!114 &1376145535
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114353911644060528, guid: 5b6a6f9aba0894ff3a747a4c8108f33c,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1376145534}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d665b04b1a22747938ddc0426127f2f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1376145536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114000014115882384, guid: 5b6a6f9aba0894ff3a747a4c8108f33c,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1376145534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1376145537

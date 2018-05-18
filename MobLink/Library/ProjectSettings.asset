@@ -127,7 +127,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 2.0.5
+  bundleVersion: 2.2.1
   preloadedAssets: []
   metroInputSource: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -154,7 +154,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.mob.moblink.demo
   buildNumber: {}
-  AndroidBundleVersionCode: 20005
+  AndroidBundleVersionCode: 20201
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
