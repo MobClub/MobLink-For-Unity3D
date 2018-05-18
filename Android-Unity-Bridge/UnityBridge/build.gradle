@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
-apply from: '../MobLink/build-mix.gradle'
+apply from: 'build-mix.gradle'
+apply plugin: 'com.mob.sdk'
 
 
 android {
@@ -48,5 +49,7 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':MobLink')
+    MobSDK {
+        MobLink {version = "2.2.1"}
+    }
 }

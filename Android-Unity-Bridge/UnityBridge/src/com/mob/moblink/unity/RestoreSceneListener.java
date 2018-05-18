@@ -40,16 +40,6 @@ public class RestoreSceneListener extends Object implements com.mob.moblink.Rest
 	}
 
 	@Override
-	public void onBeginCheckScene() {
-
-	}
-
-	@Override
-	public void onFinishCheckScene() {
-
-	}
-
-	@Override
 	public boolean onReturnSceneIntent(String s, Intent intent) {
 		return false;
 	}

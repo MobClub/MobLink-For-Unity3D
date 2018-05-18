@@ -47,5 +47,6 @@ captures
 local.properties
 .externalNativeBuild
 
-# 
+# demo android manifest
 Android/AndroidManifest.xml
+Android/AndroidManifest.xml.meta
