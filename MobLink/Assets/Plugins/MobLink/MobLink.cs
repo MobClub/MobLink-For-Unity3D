@@ -6,9 +6,11 @@ namespace com.moblink.unity3d
 {
 	public class MobLink : MonoBehaviour {
 
+        // 第一步：定义委托
 		public delegate void GetMobIdHandler(string mobId);
 		public delegate void RestoreSceneHandler(MobLinkScene scene);
 
+        // 第二步：创建委托对象
 		private static event GetMobIdHandler onGetMobId;
 		private static event RestoreSceneHandler onRestoreScene;
 
@@ -44,6 +46,7 @@ namespace com.moblink.unity3d
 
 		public static void getMobId(MobLinkScene scene, GetMobIdHandler modIdHandler)
 		{
+            // 第三步：将函数名赋值给委托（函数名在Demo.cs中创建）
 			onGetMobId += modIdHandler;
 			moblinkUtils.GetMobId(scene);
 		}
@@ -54,6 +57,7 @@ namespace com.moblink.unity3d
 			Hashtable json = (Hashtable) MiniJSON.jsonDecode(data);
 			string modId = json["mobid"].ToString();
 
+            // 第四步：调用委托实例，执行方法
 			onGetMobId (modId);
 			onGetMobId = null;
 		}

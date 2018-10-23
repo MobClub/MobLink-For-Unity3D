@@ -110,7 +110,7 @@ public class Demo : MonoBehaviour {
 	}
 		
 
-	//获取mobid之回调
+	// 创造符合委托格式的函数
 	void mobIdHandler (string mobid)
 	{
 		mobId = mobid;
