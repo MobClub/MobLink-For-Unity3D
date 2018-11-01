@@ -114,11 +114,11 @@ public class InnerScene : MonoBehaviour {
 		message += restoreScene.path + "\n";
 		message += "\n";
 
-		message += "来源source\n";
-		message += restoreScene.source + "\n";
-		message += "\n";
+		//message += "来源source\n";
+		//message += restoreScene.source + "\n";
+  //      message += "\n";
 
-		message += "参数\n";
+        message += "参数\n";
 		Hashtable temp = restoreScene.customParams;
 		foreach(string key in temp.Keys) {
 			message += key + ":" + temp[key] + "\n";

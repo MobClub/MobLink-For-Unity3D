@@ -10,22 +10,20 @@ public class Demo : MonoBehaviour {
 
 	// 临时用来在Scene切换时传递参数
 	public static MobLinkScene tempScene;
-
 	public GUISkin demoSkin;
-	public MobLink moblink;
 
 	private float scale = 1.0f;
 
 	private static String[] PATH = new string[]{
 		"/demo/a",
-		"/demo/b",
-		"/demo/c",
-		"/demo/d"
-	};
+        "/demo/b",
+        "/demo/c",
+        "/demo/d"
+    };
 
 	// 用户选择path的id
 	private int selectedPath;
-	private String source = "";
+    // private String source = "";
 	private String key1 = "", value1 = "";
 	private String key2 = "", value2 = "";
 	private String key3 = "", value3 = "";
@@ -70,10 +68,10 @@ public class Demo : MonoBehaviour {
 		y += V_DIVIDER_HEIGHT + FONT_SIZE;
 		selectedPath = GUI.Toolbar (new Rect (x, y, w, h), selectedPath, new string[]{ "A界面", "B界面", "C界面", "D界面" });
 
-		y += V_DIVIDER_HEIGHT + ITEM_HEIGHT;
-		GUI.Label(new Rect(x, y, w, h), "来源source");
-		y += V_DIVIDER_HEIGHT + FONT_SIZE;
-		source = GUI.TextField (new Rect (x, y, w, h), source);
+        // y += V_DIVIDER_HEIGHT + ITEM_HEIGHT;
+        // GUI.Label(new Rect(x, y, w, h), "来源source");
+        // y += V_DIVIDER_HEIGHT + FONT_SIZE;
+        // source = GUI.TextField (new Rect (x, y, w, h), source);
 
 		y += V_DIVIDER_HEIGHT + ITEM_HEIGHT;
 		GUI.Label(new Rect(x, y, w, h), "自定义参数");
@@ -112,11 +110,11 @@ public class Demo : MonoBehaviour {
 	}
 		
 
-	//获取mobid之回调
-	void mobIdHandler (string mobid)
+	// 创造符合委托格式的函数
+	void mobIdHandler (string mobid, string errorInfo)
 	{
 		mobId = mobid;
-		Console.Write ("Received MobId:" + mobid);
+        Debug.Log("[moblink-unity]Received MobId: " + mobid + ", errorInfo: " + errorInfo);
 	}
 		
 	void clickGetMobId()
@@ -134,7 +132,8 @@ public class Demo : MonoBehaviour {
 		if (key3.Length > 0 && value3.Length > 0) {
 			custom.Add (key3, value3);
 		}
-		MobLinkScene scene = new MobLinkScene (pathString, source, custom);
+        // MobLinkScene scene = new MobLinkScene (pathString, source, custom);
+        MobLinkScene scene = new MobLinkScene(pathString, custom);
 		MobLink.getMobId (scene, mobIdHandler);
 	}
 
@@ -150,7 +149,7 @@ public class Demo : MonoBehaviour {
 	void fillDefault()
 	{
 		selectedPath = 0;
-		source = "MobLinkDemo";
+        // source = "MobLinkDemo";
 		key1 = "key1"; value1 = "value1";
 		key2 = "key2"; value2 = "value2";
 		key3 = "key3"; value3 = "value3";
@@ -176,7 +175,7 @@ public class Demo : MonoBehaviour {
 		if (1 == boxId) {
 			message = "请先获取mobId";
 		} else if (2 == boxId) {
-			String url = "http://f.moblink.mob.com" + PATH [selectedPath] + "?mobid=" + mobId;
+			String url = "http://f.moblink.mob.com/demoPro" + PATH [selectedPath] + "?mobid=" + mobId;
 			message = "请分享下面的链接地址: \r\n" + url + "\r\n然后就可以通过这个链接打开app, 并进行还原";
 		}
 		Rect winRect = windowRect;
@@ -214,6 +213,15 @@ public class Demo : MonoBehaviour {
 
 		Hashtable customParams = scene.customParams;
 
-		Debug.Log ("OnRestoreScene(), param:" + customParams);
+        if (customParams != null)
+        {
+            Debug.Log("[moblink-unity]OnRestoreScene(). path: " + scene.path +
+            ", params: " + customParams.toJson());
+        } else
+        {
+            Debug.Log("[moblink-unity]OnRestoreScene(). path: " + scene.path +
+            ", params: " + null);
+        }
+        
 	}
 }
