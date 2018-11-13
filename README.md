@@ -4,8 +4,8 @@
 
 **当前支持的 MobLink 版本**
 
-- iOS v2.2.0
-- Android v2.2.0
+- iOS v3.0.0
+- Android v3.0.1
 
 **集成文档**
 
@@ -111,13 +111,13 @@ git clone https://github.com/MobClub/Unity-For-MobLink.git
 
 5. 在不同的平台(如微信/浏览器)分享以下链接，然后访问链接
     
-    http://f.moblink.mob.com/demo/a?mobid=up
+    http://f.moblink.mob.com/demoPro/a?mobid=up
         
-    http://f.moblink.mob.com/demo/b?mobid=up
+    http://f.moblink.mob.com/demoPro/b?mobid=up
     
-    http://f.moblink.mob.com/demo/c?mobid=up
+    http://f.moblink.mob.com/demoPro/c?mobid=up
     
-    http://f.moblink.mob.com/demo/d?mobid=up
+    http://f.moblink.mob.com/demoPro/d?mobid=up
     
 
 
