@@ -5,7 +5,7 @@
 **当前支持的 MobLink 版本**
 
 - iOS v3.0.0
-- Android v3.0.1
+- Android v3.0.2
 
 **集成文档**
 
