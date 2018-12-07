@@ -43,8 +43,110 @@
 
 
 #### Android配置及注意事项(iOS开发者可忽略)
+对AndroidManifest.xml进行如下配置：
 
-在这里只需要配置AndroidManifest部分, 请参考原生文档[http://wiki.mob.com/sdk-moblink-android-2-0-0/](http://wiki.mob.com/sdk-moblink-android-2-0-0/)) 中的"配置AndroidManiFest.xml文件"进行配置
+1. 添加权限：
+```
+	<uses-permission android:name="android.permission.GET_TASKS" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+```
+2. 指定Application使用MobLinkUnityApplication：
+```
+android:name="com.mob.moblink.unity.MobLinkUnityApplication"
+```
+3. 配置应用key：
+```
+<meta-data android:name="Mob-AppKey" android:value="Mob后台的AppKey"/>
+<meta-data android:name="Mob-AppSecret"  android:value="Mob后台的AppSecret"/>
+```
+4. 指定启动Activity为MobUnityPlayerActivity：
+```
+        <activity android:name="com.mob.moblink.unity.MobUnityPlayerActivity"
+                  android:label="@string/app_name"
+				  android:clearTaskOnLaunch="false"
+				  android:launchMode="singleInstance" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+				<category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+```
+5. 添加MobLinkActivity：
+```
+		<activity 
+			android:name="com.mob.moblink.MobLinkActivity" 
+			android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+			android:launchMode="singleTask">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW"/>
+				<category android:name="android.intent.category.DEFAULT"/>
+				<category android:name="android.intent.category.BROWSABLE"/>
+				<data android:host="com.mob.moblink.demo" android:scheme="mlink"/>
+			</intent-filter>
+			<intent-filter android:autoVerify="true">
+				<action android:name="android.intent.action.VIEW"/>
+				<category android:name="android.intent.category.DEFAULT"/>
+				<category android:name="android.intent.category.BROWSABLE"/>
+				<data android:host="z.t4m.cn" android:scheme="http"/>
+				<data android:host="z.t4m.cn" android:scheme="https"/>
+			</intent-filter>
+		</activity>
+```
+
+最后，完整的AndroidManifest.xml内容大致如下：
+
+```
+	<uses-permission android:name="android.permission.GET_TASKS" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <application
+		android:name="com.mob.moblink.unity.MobLinkUnityApplication"
+        android:theme="@style/UnityThemeSelector"
+        android:icon="@drawable/app_icon"
+        android:label="@string/app_name"
+        android:debuggable="true">
+      <meta-data android:name="Mob-AppKey" android:value="Mob后台的AppKey"/>
+      <meta-data android:name="Mob-AppSecret" android:value="Mob后台的AppSecret"/>
+        <activity android:name="com.mob.moblink.unity.MobUnityPlayerActivity"
+                  android:label="@string/app_name"
+				  android:clearTaskOnLaunch="false"
+				  android:launchMode="singleInstance" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+				<category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+		<activity 
+			android:name="com.mob.moblink.MobLinkActivity" 
+			android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+			android:launchMode="singleTask">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW"/>
+				<category android:name="android.intent.category.DEFAULT"/>
+				<category android:name="android.intent.category.BROWSABLE"/>
+				<data android:host="com.mob.moblink.demo" android:scheme="mlink"/>
+			</intent-filter>
+			<intent-filter android:autoVerify="true">
+				<action android:name="android.intent.action.VIEW"/>
+				<category android:name="android.intent.category.DEFAULT"/>
+				<category android:name="android.intent.category.BROWSABLE"/>
+				<data android:host="z.t4m.cn" android:scheme="http"/>
+				<data android:host="z.t4m.cn" android:scheme="https"/>
+			</intent-filter>
+		</activity>
+    </application>
+```
 
 ## 调用接口及获取回调
 
