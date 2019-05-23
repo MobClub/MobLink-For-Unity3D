@@ -110,7 +110,7 @@ android:name="com.mob.moblink.unity.MobLinkUnityApplication"
 	}
 ```
 4.配置mainTemplate.gradle 添加一下代码
-
+```
 buildscript {
     repositories {
         jcenter()
@@ -121,8 +121,9 @@ buildscript {
         classpath 'com.mob.sdk:MobSDK:+'
     }
 }
+```
 5.修改appkey和appSecret
-
+```
 // 添加插件
 apply plugin: 'com.mob.sdk'
 
