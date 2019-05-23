@@ -73,9 +73,11 @@ android:name="com.mob.moblink.unity.MobLinkUnityApplication"
             </intent-filter>
         </activity>
 ```
-注：如果您的项目需要使用自定义自己的application 和 入口 UnityPlayerActivity。 
-1.请在自定义的application的 oncreate()方法中 添加以下代码
-MobLink.setRestoreSceneListener(new com.mob.moblink.RestoreSceneListener() {
+注：如果您的项目需要使用自定义自己的application 和 入口 UnityPlayerActivity。
+```
+1.请在自定义的application的 oncreate()方法中 添加以下代码：
+
+	MobLink.setRestoreSceneListener(new com.mob.moblink.RestoreSceneListener() {
 			@Override
 			public Class<? extends Activity> willRestoreScene(Scene scene) {
 				Class unityClazz = null;
@@ -88,7 +90,7 @@ MobLink.setRestoreSceneListener(new com.mob.moblink.RestoreSceneListener() {
 				}
 				return unityClazz;
 			}
-
+			
 			@Override
 			public void completeRestore(Scene scene) {
 				Log.d(TAG, "Restore scene completed.");
