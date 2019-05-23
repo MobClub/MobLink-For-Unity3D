@@ -15,7 +15,7 @@
 
 ## 下载并导入MobLink
 
-下载[Unity-For-MobLink](https://github.com/MobClub/Unity-For-MobLink),打开项目双击MobLink.unitypackage相关文件。注意该操作可能会覆盖您原来已经存在的文件！ 
+下载[Unity-For-MobLink] (https://github.com/MobClub/Unity-For-MobLink),打开项目双击MobLink.unitypackage相关文件。注意该操作可能会覆盖您原来已经存在的文件！ 
 
 
 
@@ -59,12 +59,8 @@
 ```
 android:name="com.mob.moblink.unity.MobLinkUnityApplication"
 ```
-3. 配置应用key：
-```
-<meta-data android:name="Mob-AppKey" android:value="Mob后台的AppKey"/>
-<meta-data android:name="Mob-AppSecret"  android:value="Mob后台的AppSecret"/>
-```
-4. 指定启动Activity为MobUnityPlayerActivity：
+
+3. 指定启动Activity为MobUnityPlayerActivity：
 ```
         <activity android:name="com.mob.moblink.unity.MobUnityPlayerActivity"
                   android:label="@string/app_name"
@@ -77,76 +73,69 @@ android:name="com.mob.moblink.unity.MobLinkUnityApplication"
             </intent-filter>
         </activity>
 ```
-5. 添加MobLinkActivity：
-```
-		<activity 
-			android:name="com.mob.moblink.MobLinkActivity" 
-			android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
-			android:launchMode="singleTask">
-			<intent-filter>
-				<action android:name="android.intent.action.VIEW"/>
-				<category android:name="android.intent.category.DEFAULT"/>
-				<category android:name="android.intent.category.BROWSABLE"/>
-				<data android:host="com.mob.moblink.demo" android:scheme="mlink"/>
-			</intent-filter>
-			<intent-filter android:autoVerify="true">
-				<action android:name="android.intent.action.VIEW"/>
-				<category android:name="android.intent.category.DEFAULT"/>
-				<category android:name="android.intent.category.BROWSABLE"/>
-				<data android:host="z.t4m.cn" android:scheme="http"/>
-				<data android:host="z.t4m.cn" android:scheme="https"/>
-			</intent-filter>
-		</activity>
-```
+注：如果您的项目需要使用自定义自己的application 和 入口 UnityPlayerActivity。 
+1.请在自定义的application的 oncreate()方法中 添加以下代码
+MobLink.setRestoreSceneListener(new com.mob.moblink.RestoreSceneListener() {
+			@Override
+			public Class<? extends Activity> willRestoreScene(Scene scene) {
+				Class unityClazz = null;
+				try {
+					//替换此处com.mob.moblink.unity.MobUnityPlayerActivity为您自己的入口activity
+					//也可以根据方法参数scene 执行调用打开相应的activity
+					unityClazz = Class.forName("com.mob.moblink.unity.MobUnityPlayerActivity");
+				} catch (ClassNotFoundException e) {
+					Log.e(TAG, "Can not initialize MobUnityPlayerActivity", e);
+				}
+				return unityClazz;
+			}
 
-最后，完整的AndroidManifest.xml内容大致如下：
+			@Override
+			public void completeRestore(Scene scene) {
+				Log.d(TAG, "Restore scene completed.");
+			}
 
+			@Override
+			public void notFoundScene(Scene scene) {
+
+			}
+		});
+2自定义的入口activity，添加下代码
+	@Override
+	protected void onNewIntent(Intent intent) {
+		super.onNewIntent(intent);
+		setIntent(intent);
+		MobLink.updateNewIntent(getIntent(), this);
+	}
 ```
-	<uses-permission android:name="android.permission.GET_TASKS" />
-	<uses-permission android:name="android.permission.INTERNET" />
-	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <application
-		android:name="com.mob.moblink.unity.MobLinkUnityApplication"
-        android:theme="@style/UnityThemeSelector"
-        android:icon="@drawable/app_icon"
-        android:label="@string/app_name"
-        android:debuggable="true">
-      <meta-data android:name="Mob-AppKey" android:value="Mob后台的AppKey"/>
-      <meta-data android:name="Mob-AppSecret" android:value="Mob后台的AppSecret"/>
-        <activity android:name="com.mob.moblink.unity.MobUnityPlayerActivity"
-                  android:label="@string/app_name"
-				  android:clearTaskOnLaunch="false"
-				  android:launchMode="singleInstance" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-				<category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-        </activity>
-		<activity 
-			android:name="com.mob.moblink.MobLinkActivity" 
-			android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
-			android:launchMode="singleTask">
-			<intent-filter>
-				<action android:name="android.intent.action.VIEW"/>
-				<category android:name="android.intent.category.DEFAULT"/>
-				<category android:name="android.intent.category.BROWSABLE"/>
-				<data android:host="com.mob.moblink.demo" android:scheme="mlink"/>
-			</intent-filter>
-			<intent-filter android:autoVerify="true">
-				<action android:name="android.intent.action.VIEW"/>
-				<category android:name="android.intent.category.DEFAULT"/>
-				<category android:name="android.intent.category.BROWSABLE"/>
-				<data android:host="z.t4m.cn" android:scheme="http"/>
-				<data android:host="z.t4m.cn" android:scheme="https"/>
-			</intent-filter>
-		</activity>
-    </application>
-```
+4.配置mainTemplate.gradle 添加一下代码
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+ 
+    dependencies {
+        ...
+        classpath 'com.mob.sdk:MobSDK:+'
+    }
+}
+5.修改appkey和appSecret
+
+// 添加插件
+apply plugin: 'com.mob.sdk'
+
+MobSDK {
+    appKey "moba6b6c6d6" //您在开发这后台注册的appKey
+    appSecret "b89d2427a3bc7ad1aea1e1e8c1d36bf3"//您在开发这后台注册的appSecret
+
+     MobLink {
+        uriScheme "mlink://com.mob.moblink.demo" //您后台配置的scheme
+        appLinkHost "z.t4m.cn"//您后台开启AppLink时生成的Host
+ 
+    }
+}
+
+
 
 ## 调用接口及获取回调
 
