@@ -1,2 +1,3 @@
-/MobLink/
-/Android-Unity-Bridge/
+*.meta
+!Demo/Assets
+Demo
